@@ -2,7 +2,7 @@
 session_start();
 require_once '../helper/connection.php';
 
-$kriteia = $_GET['kriteria'];
+$kriteria = $_GET['kriteria'];
 
 $result = mysqli_query($connection, "DELETE FROM kriteria WHERE kriteria='$kriteria'");
 

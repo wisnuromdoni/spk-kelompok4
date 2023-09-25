@@ -2,7 +2,7 @@
 require_once '../layout/_top.php';
 require_once '../helper/connection.php';
 
-$kriteria = $_GET['kriteria'];
+$kriteria = $_GET['kriteria']; 
 $query = mysqli_query($connection, "SELECT * FROM kriteria WHERE kriteria='$kriteria'");
 ?>
 
@@ -20,7 +20,7 @@ $query = mysqli_query($connection, "SELECT * FROM kriteria WHERE kriteria='$krit
             <?php
             while ($row = mysqli_fetch_array($query)) {
             ?>
-              <input type="hidden" name="kriteia" value="<?= $row['kriteria'] ?>">
+              <input type="hidden" name="kriteria" value="<?= $row['kriteria'] ?>">
               <table cellpadding="8" class="w-100">
                 <tr>
                   <td>Kriteria</td>

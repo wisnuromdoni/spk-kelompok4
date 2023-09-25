@@ -2,10 +2,10 @@
 require_once '../layout/_top.php';
 require_once '../helper/connection.php';
 
-$kelas = mysqli_query($connection, "SELECT * FROM kelas");
+// $kelas = mysqli_query($connection, "SELECT * FROM kelas");
 ?>
 
-<section class="section">
+<section class="section"> 
   <div class="section-header d-flex justify-content-between">
     <h1>Tambah Alternatif Mahasiswa</h1>
     <a href="./index.php" class="btn btn-light">Kembali</a>

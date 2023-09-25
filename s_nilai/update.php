@@ -17,7 +17,7 @@ if ($query) {
   ];
   header('Location: ./index.php');
 } else {
-  $_SESSION['info'] = [
+  $_SESSION['info'] = [ 
     'status' => 'failed',
     'message' => mysqli_error($connection)
   ];

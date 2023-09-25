@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.4
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Feb 02, 2021 at 01:41 PM
--- Server version: 10.4.17-MariaDB
--- PHP Version: 7.4.14
+-- Host: 127.0.0.1
+-- Generation Time: Sep 25, 2023 at 09:35 AM
+-- Server version: 10.4.11-MariaDB
+-- PHP Version: 7.4.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -44,6 +44,25 @@ INSERT INTO `dosen` (`nidn`, `nama_dosen`, `jenkel_dosen`, `alamat_dosen`) VALUE
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `kriteria`
+--
+
+CREATE TABLE `kriteria` (
+  `kriteria` varchar(30) NOT NULL,
+  `bobot` int(11) NOT NULL,
+  `kategori` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `kriteria`
+--
+
+INSERT INTO `kriteria` (`kriteria`, `bobot`, `kategori`) VALUES
+('IPK', 5, 'Pria');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `login`
 --
 
@@ -69,20 +88,23 @@ INSERT INTO `login` (`id`, `username`, `password`) VALUES
 CREATE TABLE `mahasiswa` (
   `nim` varchar(12) NOT NULL,
   `nama` varchar(50) NOT NULL,
-  `jenis_kelamin` varchar(10) NOT NULL,
-  `kota_kelahiran` varchar(30) NOT NULL,
-  `tanggal_kelahiran` varchar(20) NOT NULL,
-  `alamat` text NOT NULL,
-  `program_studi` varchar(20) NOT NULL,
-  `tahun_masuk` varchar(4) NOT NULL
+  `kelas` varchar(10) NOT NULL,
+  `tempat_lahir` varchar(30) NOT NULL,
+  `tgl_lahir` varchar(20) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `no_hp` varchar(20) NOT NULL,
+  `alamat` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `mahasiswa`
 --
 
-INSERT INTO `mahasiswa` (`nim`, `nama`, `jenis_kelamin`, `kota_kelahiran`, `tanggal_kelahiran`, `alamat`, `program_studi`, `tahun_masuk`) VALUES
-('1911010001', 'Heri Hermawan', 'Pria', 'Entah', '1990-01-01', 'Entah', 'Teknik Informatika', '2019');
+INSERT INTO `mahasiswa` (`nim`, `nama`, `kelas`, `tempat_lahir`, `tgl_lahir`, `email`, `no_hp`, `alamat`) VALUES
+('10108031', 'Kevin Abhista', 'SI 3A', 'Subang', '2003-01-14', 'kevinabhista@gmail.com', '087654632845', ''),
+('10108041', 'Amelia Rosmaida', 'SI 3A', 'Sukabumi', '2002-12-18', 'ameliar@gmail.com', '08564738431', ''),
+('10108057', 'Syifa Mutiara', 'SI 3A', 'Lampung', '2003-03-13', 'syifam@yahoo.com', '08563462854', ''),
+('10108061', 'Wisnu Romdoni', 'SI 3A', 'Subang', '2002-09-05', 'wisnuromdoni11@gmail.com', '082356748906', 'Subang');
 
 -- --------------------------------------------------------
 
@@ -122,7 +144,7 @@ CREATE TABLE `nilai` (
 --
 
 INSERT INTO `nilai` (`id`, `nim`, `kode_matkul`, `semester`, `nilai`) VALUES
-(5, '1911010001', '111', 3, 90);
+(5, '1911010001', '111', 3, 50);
 
 --
 -- Indexes for dumped tables

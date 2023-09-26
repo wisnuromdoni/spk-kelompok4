@@ -30,8 +30,8 @@ $kriteria = mysqli_query($connection, "SELECT * FROM kriteria");
                 <td>
                   <select class="form-control" name="kategori" id="kategori" required>
                     <option value="">--Pilih Kategori--</option>
-                    <option value="Pria">Benefit</option>
-                    <option value="Wanita">Cost</option>
+                    <option value="Benefit">Benefit</option>
+                    <option value="Cost">Cost</option>
                   </select>
                 </td>
               </tr>

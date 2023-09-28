@@ -33,47 +33,51 @@ $matkul = mysqli_query($connection, "SELECT kode_matkul,nama_matkul FROM matakul
                   </select>
                 </td>
               </tr>
-              <tr>
-                <td>Mata Kuliah</td>
-                <td>
-                  <select class="form-control" name="matkul" id="matkul" required>
-                    <option value="">--Pilih Matakuliah--</option>
-                    <?php
-                    while ($r = mysqli_fetch_array($matkul)) :
-                    ?>
-                      <option value="<?= $r['kode_matkul'] ?>"><?= $r['nama_matkul'] ?></option>
-                    <?php
-                    endwhile;
-                    ?>
-                  </select>
-                </td>
-              </tr>
-              <tr>
-                <td>Semester</td>
-                <td>
-                  <select class="form-control" name="semester" id="semester" required>
-                    <option value="">--Pilih Semester--</option>
-                    <?php
-                    for ($x = 1; $x <= 12; $x++) {
-                    ?>
-                      <option value=<?= $x ?>><?= $x ?></option>
-                    <?php
-                    }
-                    ?>
-                  </select>
-                </td>
-              </tr>
-              <tr>
-                <td>Nilai</td>
-                <td><input class="form-control" type="number" name="nilai" max="100"></td>
-              </tr>
-              <tr>
+            </table>
+            <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Kriteria</th>
+                            <th scope="col">Bobot</th>
+                            <th scope="col">Kategori</th>
+                            <th scope="col">Nilai</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+
+                            $sql = 'SELECT * FROM kriteria';
+                            $result = mysqli_query($connection, $sql);
+
+                            $i = 1;
+                            while ($row = mysqli_fetch_array($result)) {
+
+                            ?>
+
+                        <tr>
+                            <th scope="row"><?php echo $row['id_kriteria'] ?></th>
+                            <td><?php echo $row['nama_kriteria'] ?></td>
+                            <td><?php echo $row['bobot'] ?></td>
+                            <td><?php echo $row['kategori'] ?></td>
+                            <td><input class="form-control" type="number" name="nilai_<?php echo $row['id_kriteria'] ?>" /></td>
+                        </tr>
+
+                        <?php
+
+                            }
+
+                            ?>
+                        <!-- Num rows -->
+                        <input type="hidden" name="num_rows" value="<?php echo mysqli_num_rows($result) ?>" />
+                    </tbody>
+                    <tr>
                 <td>
                   <input class="btn btn-primary" type="submit" name="proses" value="Simpan">
                   <input class="btn btn-danger" type="reset" name="batal" value="Bersihkan">
                 </td>
               </tr>
-            </table>
+                </table>
           </form>
         </div>
       </div>

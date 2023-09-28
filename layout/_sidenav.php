@@ -29,8 +29,7 @@
       <li class="dropdown">
         <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Nilai Keputusan</span></a>
         <ul class="dropdown-menu">
-          <li><a class="nav-link" href="../s_nilai/index.php">List</a></li>
-          <li><a class="nav-link" href="../s_nilai/create.php">Tambah Data</a></li>
+          <li><a class="nav-link" href="../s_nilai/create.php">Nilai</a></li>
         </ul>
       </li>
       <li class="dropdown">

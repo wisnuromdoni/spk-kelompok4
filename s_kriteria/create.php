@@ -17,9 +17,13 @@ $kriteria = mysqli_query($connection, "SELECT * FROM kriteria");
           <!-- // Form -->
           <form action="./store.php" method="POST">
             <table cellpadding="8" class="w-100">
+            <tr>
+                <td>ID Kriteria</td>
+                <td><input class="form-control" type="text" name="id_kriteria"></td>
+              </tr>
               <tr>
                 <td>Kriteria</td>
-                <td><input class="form-control" type="text" name="kriteria"></td>
+                <td><input class="form-control" type="text" name="nama_kriteria"></td>
               </tr>
               <tr>
                 <td>Bobot</td>

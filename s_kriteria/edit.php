@@ -2,8 +2,8 @@
 require_once '../layout/_top.php';
 require_once '../helper/connection.php';
 
-$kriteria = $_GET['kriteria']; 
-$query = mysqli_query($connection, "SELECT * FROM kriteria WHERE kriteria='$kriteria'");
+$id_kriteria = $_GET['id_kriteria']; 
+$query = mysqli_query($connection, "SELECT * FROM kriteria WHERE id_kriteria='$id_kriteria'");
 ?>
 
 <section class="section">
@@ -20,11 +20,15 @@ $query = mysqli_query($connection, "SELECT * FROM kriteria WHERE kriteria='$krit
             <?php
             while ($row = mysqli_fetch_array($query)) {
             ?>
-              <input type="hidden" name="kriteria" value="<?= $row['kriteria'] ?>">
+              <input type="hidden" name="id_kriteria" value="<?= $row['id_kriteria'] ?>">
               <table cellpadding="8" class="w-100">
                 <tr>
+                  <td>ID Kriteria</td>
+                  <td><input class="form-control" required value="<?= $row['id_kriteria'] ?>" disabled></td>
+                </tr>
+                <tr>
                   <td>Kriteria</td>
-                  <td><input class="form-control" required value="<?= $row['kriteria'] ?>"></td>
+                  <td><input class="form-control" required value="<?= $row['nama_kriteria'] ?>"></td>
                 </tr>
                 <tr>
                   <td>Bobot</td>

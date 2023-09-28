@@ -18,6 +18,7 @@ $result = mysqli_query($connection, "SELECT * FROM kriteria");
             <table class="table table-hover table-striped w-100" id="table-1">
               <thead>
                 <tr class="text-center">
+                  <th>ID Kriteria</th>
                   <th>Kriteria</th>
                   <th>Bobot</th>
                   <th>Kategori</th>
@@ -30,14 +31,15 @@ $result = mysqli_query($connection, "SELECT * FROM kriteria");
                 ?>
 
                   <tr>
-                    <td><?= $data['kriteria'] ?></td>
+                    <td><?= $data['id_kriteria'] ?></td>
+                    <td><?= $data['nama_kriteria'] ?></td>
                     <td><?= $data['bobot'] ?></td>
                     <td><?= $data['kategori'] ?></td>
                     <td>
-                      <a class="btn btn-sm btn-danger mb-md-0 mb-1" href="delete.php?nim=<?= $data['kriteria'] ?>">
+                      <a class="btn btn-sm btn-danger mb-md-0 mb-1" href="delete.php?id_kriteria=<?= $data['id_kriteria'] ?>">
                         <i class="fas fa-trash fa-fw"></i>
                       </a>
-                      <a class="btn btn-sm btn-info" href="edit.php?nim=<?= $data['kriteria'] ?>">
+                      <a class="btn btn-sm btn-info" href="edit.php?id_kriteria=<?= $data['id_kriteria'] ?>">
                         <i class="fas fa-edit fa-fw"></i>
                       </a>
                     </td>

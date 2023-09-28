@@ -2,11 +2,12 @@
 session_start();
 require_once '../helper/connection.php';
 
-$kriteria = $_POST['kriteria'];
+$id_kriteria = $_POST['id_kriteria'];
+$nama_kriteria = $_POST['nama_kriteria'];
 $bobot = $_POST['bobot'];
 $kategori = $_POST['kategori'];
 
-$query = mysqli_query($connection, "UPDATE into kriteria (kriteria, bobot, kategori) value('$kriteria', '$bobot', '$kategori')");
+$query = mysqli_query($connection, "UPDATE kriteria SET nama_kriteria = '$nama_kriteria', bobot = '$bobot', kategori = '$kategori'  WHERE id_kriteria = '$id_kriteria'");
 if ($query) {
   $_SESSION['info'] = [
     'status' => 'success',

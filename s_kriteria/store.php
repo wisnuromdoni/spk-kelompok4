@@ -2,11 +2,12 @@
 session_start();
 require_once '../helper/connection.php';
 
-$kriteria = $_POST['kriteria'];
+$id_kriteria = $_POST['id_kriteria'];
+$nama_kriteria = $_POST['nama_kriteria'];
 $bobot = $_POST['bobot'];
 $kategori = $_POST['kategori'];
 
-$query = mysqli_query($connection, "insert into kriteria (kriteria, bobot, kategori) value('$kriteria', '$bobot', '$kategori')");
+$query = mysqli_query($connection, "insert into kriteria (id_kriteria, nama_kriteria, bobot, kategori) value('$id_kriteria', '$nama_kriteria', '$bobot', '$kategori')");
 if ($query) {
   $_SESSION['info'] = [
     'status' => 'success',

@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 25, 2023 at 09:35 AM
--- Server version: 10.4.11-MariaDB
--- PHP Version: 7.4.4
+-- Generation Time: Sep 28, 2023 at 04:09 PM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -32,7 +32,7 @@ CREATE TABLE `dosen` (
   `nama_dosen` varchar(50) NOT NULL,
   `jenkel_dosen` varchar(10) NOT NULL,
   `alamat_dosen` varchar(60) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `dosen`
@@ -48,17 +48,21 @@ INSERT INTO `dosen` (`nidn`, `nama_dosen`, `jenkel_dosen`, `alamat_dosen`) VALUE
 --
 
 CREATE TABLE `kriteria` (
-  `kriteria` varchar(30) NOT NULL,
-  `bobot` int(11) NOT NULL,
-  `kategori` varchar(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `id_kriteria` varchar(3) NOT NULL,
+  `nama_kriteria` varchar(20) NOT NULL,
+  `bobot` int(5) NOT NULL,
+  `kategori` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `kriteria`
 --
 
-INSERT INTO `kriteria` (`kriteria`, `bobot`, `kategori`) VALUES
-('IPK', 5, 'Pria');
+INSERT INTO `kriteria` (`id_kriteria`, `nama_kriteria`, `bobot`, `kategori`) VALUES
+('K1', 'IPK', 5, 'Benefit'),
+('K2', 'TOEFL', 3, 'Benefit'),
+('K3', 'Organisasi', 3, 'Cost'),
+('K4', 'Kejuaraan', 4, 'Benefit');
 
 -- --------------------------------------------------------
 
@@ -70,7 +74,7 @@ CREATE TABLE `login` (
   `id` int(11) NOT NULL,
   `username` varchar(20) NOT NULL,
   `password` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `login`
@@ -94,7 +98,7 @@ CREATE TABLE `mahasiswa` (
   `email` varchar(100) NOT NULL,
   `no_hp` varchar(20) NOT NULL,
   `alamat` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `mahasiswa`
@@ -103,8 +107,10 @@ CREATE TABLE `mahasiswa` (
 INSERT INTO `mahasiswa` (`nim`, `nama`, `kelas`, `tempat_lahir`, `tgl_lahir`, `email`, `no_hp`, `alamat`) VALUES
 ('10108031', 'Kevin Abhista', 'SI 3A', 'Subang', '2003-01-14', 'kevinabhista@gmail.com', '087654632845', ''),
 ('10108041', 'Amelia Rosmaida', 'SI 3A', 'Sukabumi', '2002-12-18', 'ameliar@gmail.com', '08564738431', ''),
+('10108051', 'Dandi', 'SI 3B', 'Subang', '2003-02-12', 'dandi@gmail.com', '08763456475', ''),
 ('10108057', 'Syifa Mutiara', 'SI 3A', 'Lampung', '2003-03-13', 'syifam@yahoo.com', '08563462854', ''),
-('10108061', 'Wisnu Romdoni', 'SI 3A', 'Subang', '2002-09-05', 'wisnuromdoni11@gmail.com', '082356748906', 'Subang');
+('10108061', 'Wisnu Romdoni', 'SI 3A', 'Subang', '2002-09-05', 'wisnuromdoni11@gmail.com', '082356748906', 'Subang'),
+('111111', 'Asep', 'SI 2A', 'Padang', '2003-09-21', 'asep@gmail.com', '089463645364', 'Medan');
 
 -- --------------------------------------------------------
 
@@ -116,7 +122,7 @@ CREATE TABLE `matakuliah` (
   `kode_matkul` varchar(12) NOT NULL,
   `nama_matkul` varchar(50) NOT NULL,
   `sks` int(3) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `matakuliah`
@@ -137,7 +143,7 @@ CREATE TABLE `nilai` (
   `kode_matkul` varchar(12) NOT NULL,
   `semester` int(2) NOT NULL,
   `nilai` int(3) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `nilai`
@@ -155,6 +161,12 @@ INSERT INTO `nilai` (`id`, `nim`, `kode_matkul`, `semester`, `nilai`) VALUES
 --
 ALTER TABLE `dosen`
   ADD PRIMARY KEY (`nidn`);
+
+--
+-- Indexes for table `kriteria`
+--
+ALTER TABLE `kriteria`
+  ADD PRIMARY KEY (`id_kriteria`);
 
 --
 -- Indexes for table `login`

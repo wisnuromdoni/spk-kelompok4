@@ -48,20 +48,16 @@
           <li><a class="nav-link" href="../s_alternatif/create.php">Tambah Data Alternaitf</a></li>
         </ul>
       </li>
-      <li class="dropdown">
-        <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Kriteria</span></a>
-        <ul class="dropdown-menu">
-          <li><a class="nav-link" href="../s_kriteria/index.php">List Kriteria</a></li>
-          <li><a class="nav-link" href="../s_kriteria/create.php">Tambah Data Kriteria</a></li>
-        </ul>
-      </li>
-      <?php } ?>
+          <?php } ?>
+          <?php
+      if ($_SESSION['status'] == "Admin" || $_SESSION['status'] == "Mahasiswa" ){ ?>
       <li class="dropdown">
         <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Nilai Keputusan</span></a>
         <ul class="dropdown-menu">
           <li><a class="nav-link" href="../s_nilai/create.php">Nilai</a></li>
         </ul>
       </li>
+      <?php } ?>
       <?php
       if ($_SESSION['status'] == "Admin"){ ?>
       <li class="dropdown">

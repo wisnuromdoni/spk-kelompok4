@@ -1,4 +1,4 @@
-# Sistem Pendukung Keputusan (SPK) Metode TOPSIS Pemilihan Mahasiswa Berprestasi (Pilmapres) | Kelompok 4 SI 3A | 2023
+# Sistem Pendukung Keputusan (SPK) Metode TOPSIS Pemilihan Mahasiswa Berprestasi (Pilmapres) | Kelompok 4 - SI 3A | 2023
 
 
 ## 📁 Git commit format

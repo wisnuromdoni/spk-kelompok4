@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 28, 2023 at 04:09 PM
+-- Generation Time: Sep 29, 2023 at 03:37 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -62,7 +62,8 @@ INSERT INTO `kriteria` (`id_kriteria`, `nama_kriteria`, `bobot`, `kategori`) VAL
 ('K1', 'IPK', 5, 'Benefit'),
 ('K2', 'TOEFL', 3, 'Benefit'),
 ('K3', 'Organisasi', 3, 'Cost'),
-('K4', 'Kejuaraan', 4, 'Benefit');
+('K4', 'Prestasi', 4, 'Benefit'),
+('K5', 'Psikotes', 4, 'Cost');
 
 -- --------------------------------------------------------
 
@@ -73,15 +74,16 @@ INSERT INTO `kriteria` (`id_kriteria`, `nama_kriteria`, `bobot`, `kategori`) VAL
 CREATE TABLE `login` (
   `id` int(11) NOT NULL,
   `username` varchar(20) NOT NULL,
-  `password` varchar(20) NOT NULL
+  `password` varchar(20) NOT NULL,
+  `Status` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `login`
 --
 
-INSERT INTO `login` (`id`, `username`, `password`) VALUES
-(1, 'admin', '123456');
+INSERT INTO `login` (`id`, `username`, `password`, `Status`) VALUES
+(1, 'admin', '123456', '');
 
 -- --------------------------------------------------------
 
@@ -130,6 +132,19 @@ CREATE TABLE `matakuliah` (
 
 INSERT INTO `matakuliah` (`kode_matkul`, `nama_matkul`, `sks`) VALUES
 ('111', 'Pemrograman Web Dasar', 3);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `matriks`
+--
+
+CREATE TABLE `matriks` (
+  `id` int(11) NOT NULL,
+  `nim` varchar(20) NOT NULL,
+  `id_kriteria` varchar(11) NOT NULL,
+  `nilai` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -185,6 +200,12 @@ ALTER TABLE `mahasiswa`
 --
 ALTER TABLE `matakuliah`
   ADD PRIMARY KEY (`kode_matkul`);
+
+--
+-- Indexes for table `matriks`
+--
+ALTER TABLE `matriks`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `nilai`

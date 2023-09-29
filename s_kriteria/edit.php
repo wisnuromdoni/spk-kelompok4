@@ -28,7 +28,7 @@ $query = mysqli_query($connection, "SELECT * FROM kriteria WHERE id_kriteria='$i
                 </tr>
                 <tr>
                   <td>Kriteria</td>
-                  <td><input class="form-control" required value="<?= $row['nama_kriteria'] ?>"></td>
+                  <td><input class="form-control"  type="text" name="nama_kriteria" required value="<?= $row['nama_kriteria'] ?>"></td>
                 </tr>
                 <tr>
                   <td>Bobot</td>

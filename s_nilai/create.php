@@ -9,7 +9,7 @@ $matkul = mysqli_query($connection, "SELECT kode_matkul,nama_matkul FROM matakul
 <section class="section">
   <div class="section-header d-flex justify-content-between">
     <h1>Tambah Nilai</h1>
-    <a href="./index.php" class="btn btn-light">Kembali</a>
+    <a href="./create.php" class="btn btn-light">Kembali</a>
   </div>
   <div class="row">
     <div class="col-12">

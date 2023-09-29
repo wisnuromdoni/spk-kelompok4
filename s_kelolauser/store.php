@@ -2,16 +2,12 @@
 session_start();
 require_once '../helper/connection.php';
 
-$nim = $_POST['nim'];
-$nama = $_POST['nama'];
-$kelas = $_POST['kelas'];
-$tempat_lahir = $_POST['tempat_lahir'];
-$tgl_lahir = $_POST['tgl_lahir'];
-$email = $_POST['email'];
-$no_hp = $_POST['no_hp'];
-$alamat = $_POST['alamat'];
+// $id = $_POST['id'];
+$username = $_POST['username'];
+$password = $_POST['password'];
+$status = $_POST['status'];
 
-$query = mysqli_query($connection, "insert into mahasiswa (nim, nama, kelas, tempat_lahir, tgl_lahir, email, no_hp, alamat) value('$nim', '$nama', '$kelas', '$tempat_lahir', '$tgl_lahir', '$email', '$no_hp', '$alamat')");
+$query = mysqli_query($connection, "insert into login (username, password, status) value('$username','$password','$status')");
 if ($query) {
   $_SESSION['info'] = [
     'status' => 'success',

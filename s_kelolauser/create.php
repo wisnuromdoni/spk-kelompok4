@@ -34,9 +34,9 @@ require_once '../helper/connection.php';
                 <td>
                   <select class="form-control" name="status" id="status" required>
                     <option value="">--Pilih Status User--</option>
-                    <option value="SI 1A">Admin</option>
-                    <option value="SI 1B">Mahasiswa</option>
-                    <option value="SI 2A">PJ Mapres</option>
+                    <option value="Admin">Admin</option>
+                    <option value="Mahasiswa">Mahasiswa</option>
+                    <option value="PJMapres">PJ Mapres</option>
                   </select>
                 </td>
               </tr>

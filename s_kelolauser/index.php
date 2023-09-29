@@ -2,12 +2,12 @@
 require_once '../layout/_top.php';
 require_once '../helper/connection.php';
 
-$result = mysqli_query($connection, "SELECT * FROM mahasiswa");
+$result = mysqli_query($connection, "SELECT * FROM login");
 ?>
 
 <section class="section">
   <div class="section-header d-flex justify-content-between">
-    <h1>List Alternatif Mahasiswa</h1>
+    <h1>List User</h1>
     <a href="./create.php" class="btn btn-primary">Tambah Data</a>
   </div>
   <div class="row">
@@ -18,9 +18,9 @@ $result = mysqli_query($connection, "SELECT * FROM mahasiswa");
             <table class="table table-hover table-striped w-100" id="table-1">
               <thead>
                 <tr class="text-center">
-                  <th>NIM</th>
-                  <th>Nama</th>
-                  <th>Kelas</th>
+                  <th>ID</th>
+                  <th>Username</th>
+                  <th>Status</th>
                   <th style="width: 150">Aksi</th>
                 </tr>
               </thead>
@@ -30,14 +30,14 @@ $result = mysqli_query($connection, "SELECT * FROM mahasiswa");
                 ?>
 
                   <tr>
-                    <td><?= $data['nim'] ?></td>
-                    <td><?= $data['nama'] ?></td>
-                    <td><?= $data['kelas'] ?></td>
+                    <td><?= $data['id'] ?></td>
+                    <td><?= $data['username'] ?></td>
+                    <td><?= $data['status'] ?></td>
                     <td>
-                      <a class="btn btn-sm btn-danger mb-md-0 mb-1" href="delete.php?nim=<?= $data['nim'] ?>">
+                      <a class="btn btn-sm btn-danger mb-md-0 mb-1" href="delete.php?id=<?= $data['id'] ?>">
                         <i class="fas fa-trash fa-fw"></i>
                       </a>
-                      <a class="btn btn-sm btn-info" href="edit.php?nim=<?= $data['nim'] ?>">
+                      <a class="btn btn-sm btn-info" href="edit.php?id=<?= $data['id'] ?>">
                         <i class="fas fa-edit fa-fw"></i>
                       </a>
                     </td>

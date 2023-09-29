@@ -2,16 +2,12 @@
 session_start();
 require_once '../helper/connection.php';
 
-$nim = $_POST['nim'];
-$nama = $_POST['nama'];
-$kelas = $_POST['kelas'];
-$tempat_lahir = $_POST['tempat_lahir'];
-$tgl_lahir = $_POST['tgl_lahir'];
-$email = $_POST['email'];
-$no_hp = $_POST['no_hp'];
-$alamat = $_POST['alamat'];
+$id = $_POST['id'];
+$username = $_POST['username'];
+$password = $_POST['password'];
 
-$query = mysqli_query($connection, "UPDATE mahasiswa set nama='$nama', kelas='$kelas', tempat_lahir='$tempat_lahir', tgl_lahir='$tgl_lahir', email='$email', no_hp='$no_hp', alamat='$alamat' WHERE nim='$nim'");
+
+$query = mysqli_query($connection, "UPDATE login set username='$username', password='$password', status='$status' WHERE id='$id'");
 if ($query) {
   $_SESSION['info'] = [
     'status' => 'success',

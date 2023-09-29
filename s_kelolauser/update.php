@@ -5,6 +5,7 @@ require_once '../helper/connection.php';
 $id = $_POST['id'];
 $username = $_POST['username'];
 $password = $_POST['password'];
+$status = $_POST['status'];
 
 
 $query = mysqli_query($connection, "UPDATE login set username='$username', password='$password', status='$status' WHERE id='$id'");

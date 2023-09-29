@@ -7,8 +7,8 @@ $result = mysqli_query($connection, "SELECT * FROM mahasiswa");
 
 <section class="section">
   <div class="section-header d-flex justify-content-between">
-    <h1>List Alternatif Mahasiswa</h1>
-    <a href="./create.php" class="btn btn-primary">Tambah Data</a>
+    <h1>List Mahasiswa Berprestasi</h1>
+    <!-- <a href="./create.php" class="btn btn-primary">Tambah Data</a> -->
   </div>
   <div class="row">
     <div class="col-12">
@@ -21,7 +21,7 @@ $result = mysqli_query($connection, "SELECT * FROM mahasiswa");
                   <th>NIM</th>
                   <th>Nama</th>
                   <th>Kelas</th>
-                  <th style="width: 150">Aksi</th>
+                  <th style="width: 150">Validasi</th>
                 </tr>
               </thead>
               <tbody>

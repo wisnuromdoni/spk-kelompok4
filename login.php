@@ -11,6 +11,7 @@ if (isset($_POST['submit'])) {
   $row = mysqli_fetch_assoc($result);
   if ($row) {
     $_SESSION['login'] = $row;
+    $_SESSION['status'] = $row['status'];
     header('Location: index.php');
   }
 }

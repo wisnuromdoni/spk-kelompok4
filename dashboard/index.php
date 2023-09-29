@@ -3,7 +3,7 @@ require_once '../layout/_top.php';
 require_once '../helper/connection.php';
 
 $mahasiswa = mysqli_query($connection, "SELECT COUNT(*) FROM mahasiswa");
-$dosen = mysqli_query($connection, "SELECT COUNT(*) FROM dosen");
+$dosen = mysqli_query($connection, "SELECT COUNT(*) FROM login");
 $matakuliah = mysqli_query($connection, "SELECT COUNT(*) FROM matakuliah");
 $nilai = mysqli_query($connection, "SELECT COUNT(*) FROM nilai");
 
@@ -26,7 +26,7 @@ $total_nilai = mysqli_fetch_array($nilai)[0];
           </div>
           <div class="card-wrap">
             <div class="card-header">
-              <h4>Total Dosen</h4>
+              <h4>Total User</h4>
             </div>
             <div class="card-body">
               <?= $total_dosen ?>

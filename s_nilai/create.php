@@ -56,7 +56,7 @@ $matkul = mysqli_query($connection, "SELECT kode_matkul,nama_matkul FROM matakul
                             ?>
 
                         <tr>
-                            <th scope="row"><?php echo $row['id_kriteria'] ?></th>
+                            <th scope="row" style="width: 50px;"><?php echo $row['id_kriteria'] ?></th>
                             <td><?php echo $row['nama_kriteria'] ?></td>
                             <td><?php echo $row['bobot'] ?></td>
                             <td><?php echo $row['kategori'] ?></td>

@@ -94,7 +94,7 @@ $result = mysqli_query($connection, "SELECT * FROM matakuliah");
                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                             aria-label="Close"></button>
                                     </div>
-                                    <form method="post" action="edit_matriks.php">
+                                    <form method="post" action="edit.php">
                                         <div class="modal-body">
                                             <?php
                                                         $id = $row['id'];

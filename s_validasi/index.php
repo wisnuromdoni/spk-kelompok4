@@ -34,11 +34,11 @@ $result = mysqli_query($connection, "SELECT * FROM mahasiswa");
                     <td><?= $data['nama'] ?></td>
                     <td><?= $data['kelas'] ?></td>
                     <td>
-                      <a class="btn btn-sm btn-danger mb-md-0 mb-1" href="delete.php?nim=<?= $data['nim'] ?>">
+                      <!-- <a class="btn btn-sm btn-danger mb-md-0 mb-1" href="delete.php?nim=<?= $data['nim'] ?>">
                         <i class="fas fa-trash fa-fw"></i>
-                      </a>
-                      <a class="btn btn-sm btn-info" href="edit.php?nim=<?= $data['nim'] ?>">
-                        <i class="fas fa-edit fa-fw"></i>
+                      </a> -->
+                      <a class="btn btn-success btn-block" href="edit.php?nim=<?= $data['nim'] ?>">
+                        <i class="fas fa-solid fa-eye"></i>
                       </a>
                     </td>
                   </tr>

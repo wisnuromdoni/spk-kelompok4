@@ -3,7 +3,7 @@ require_once '../layout/_top.php';
 require_once '../helper/connection.php';
 
 $mahasiswa = mysqli_query($connection, "SELECT nim,nama FROM mahasiswa");
-$matkul = mysqli_query($connection, "SELECT kode_matkul,nama_matkul FROM matakuliah");
+$matrix = mysqli_query($connection, "SELECT nama_kriteria,bobot,kategori,nilai FROM matrix");
 ?>
 
 <section class="section">
@@ -60,7 +60,8 @@ $matkul = mysqli_query($connection, "SELECT kode_matkul,nama_matkul FROM matakul
                             <td><?php echo $row['nama_kriteria'] ?></td>
                             <td><?php echo $row['bobot'] ?></td>
                             <td><?php echo $row['kategori'] ?></td>
-                            <td><input class="form-control" type="number" name="nilai_<?php echo $row['id_kriteria'] ?>" /></td>
+                            <!-- <td><?php echo $row['nilai'] ?></td> -->
+                            <td><input class="form-control" type="number" name="nilai<?php echo $row['id_kriteria'] ?>" /></td>
                         </tr>
 
                         <?php

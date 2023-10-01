@@ -2,7 +2,8 @@
 require_once '../layout/_top.php';
 require_once '../helper/connection.php';
 
-$result = mysqli_query($connection, "SELECT * FROM nilai");
+$result = mysqli_query($connection, "SELECT * FROM matrix");
+$result = mysqli_query($connection, "SELECT * FROM mahasiswa");
 ?>
 
 <section class="section">
@@ -20,9 +21,8 @@ $result = mysqli_query($connection, "SELECT * FROM nilai");
                 <tr class="text-center">
                   <th>No</th>
                   <th>NIM</th>
-                  <th>Kode Mata Kuliah</th>
-                  <th>Semester</th>
-                  <th>Nilai</th>
+                  <th>Nama</th>
+                  <th>Nilai Akhir</th>
                   <th style="width: 150">Aksi</th>
                 </tr>
               </thead>
@@ -36,9 +36,8 @@ $result = mysqli_query($connection, "SELECT * FROM nilai");
                   <tr class="text-center">
                     <td><?= $no ?></td>
                     <td><?= $data['nim'] ?></td>
-                    <td><?= $data['kode_matkul'] ?></td>
-                    <td><?= $data['semester'] ?></td>
-                    <td><?= $data['nilai'] ?></td>
+                    <td><?= $data['nama'] ?></td>
+                    <td><?= $data['nama'] ?></td>
                     <td>
                       <a class="btn btn-sm btn-danger mb-md-0 mb-1" href="delete.php?id=<?= $data['id'] ?>">
                         <i class="fas fa-trash fa-fw"></i>

@@ -2,7 +2,7 @@
 require_once '../layout/_top.php';
 require_once '../helper/connection.php';
 
-$result = mysqli_query($connection, "SELECT * FROM dosen");
+$result = mysqli_query($connection, "SELECT * FROM matrix");
 ?>
 
 <section class="section">
@@ -79,4 +79,4 @@ if (isset($_SESSION['info'])) :
   $_SESSION['info'] = null;
 endif;
 ?>
-<script src="../assets/js/page/modules-datatables.js"></script>
+<script src="../assets/js/assets/js/bootstrap.min.js"></script>

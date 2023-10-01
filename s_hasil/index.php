@@ -10,50 +10,39 @@ $result = mysqli_query($connection, "SELECT * FROM dosen");
     <h1>Hasil Keputusan Berdasarkan TOPSIS</h1>
     <a href="./create.php" class="btn btn-primary">Tambah Data</a>
   </div>
-  <div class="row">
-    <div class="col-12">
-      <div class="card">
-        <div class="card-body">
-          <div class="table-responsive">
-            <table class="table table-hover table-striped w-100" id="table-1">
-              <thead>
-                <tr>
-                  <th>NIDN</th>
-                  <th>Nama dosen</th>
-                  <th>Jenis Kelamin</th>
-                  <th>Alamat</th>
-                  <th style="width: 150">Aksi</th>
-                </tr>
-              </thead>
-              <tbody>
-                <?php
-                while ($data = mysqli_fetch_array($result)) :
-                ?>
+  <div class="card">
+                    <?php
+                        $hasil = $_SESSION['skor'];
+                        $skor = $hasil['skor'];
+                        $i_best = array_keys($skor, max($skor))[0];
+                        ?>
+                    <form action="buat_surat.php" method="post">
+                        <div class="card-header">
+                            <h2><?php echo $hasil['nama'][$i_best]; ?></h2>
+                            <input type="hidden" name="nama" value="<?php echo $hasil['nama'][$i_best]; ?>" />
+                        </div>
+                        <div class="card-body">
+                            <span>Skor :</span>
+                            <h2><?php echo $skor[$i_best]; ?></h2>
+                            <input type="hidden" name="skor" value="<?php echo $skor[$i_best]; ?>" />
+                        </div>
+                        <div class="card-footer">
+                            <center>
+                                <div class="mb-3">
+                                    <input class="form-control" name="nomor" type="text"
+                                        placeholder="Masukkan nomor surat" />
+                                </div>
+                                <div class="mb-3">
+                                    <input class="form-control" name="periode" type="text"
+                                        placeholder="Masukkan mahasiswa berprestasi" />
+                                </div>
 
-                  <tr>
-                    <td><?= $data['nidn'] ?></td>
-                    <td><?= $data['nama_dosen'] ?></td>
-                    <td><?= $data['jenkel_dosen'] ?></td>
-                    <td><?= $data['alamat_dosen'] ?></td>
-                    <td>
-                      <a class="btn btn-sm btn-danger mb-md-0 mb-1" href="delete.php?nidn=<?= $data['nidn'] ?>">
-                        <i class="fas fa-trash fa-fw"></i>
-                      </a>
-                      <a class="btn btn-sm btn-info" href="edit.php?nidn=<?= $data['nidn'] ?>">
-                        <i class="fas fa-edit fa-fw"></i>
-                      </a>
-                    </td>
-                  </tr>
-
-                <?php
-                endwhile;
-                ?>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-    </div>
+                                <button type="submit" name="download" class="btn btn-primary">Unduh Surat
+                                    Keputusan</button>
+                            </center>
+                        </div>
+                    </form>
+                </div>
 </section>
 
 <?php

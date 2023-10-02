@@ -3,7 +3,7 @@ require_once '../layout/_top.php';
 require_once '../helper/connection.php';
 
 $mahasiswa = mysqli_query($connection, "SELECT nim,nama FROM mahasiswa");
-$matrix = mysqli_query($connection, "SELECT nama_kriteria,bobot,kategori,nilai FROM matrix");
+$matrix = mysqli_query($connection, "SELECT nilai FROM matrix");
 ?>
 
 <section class="section">

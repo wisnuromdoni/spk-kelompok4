@@ -54,6 +54,8 @@
         <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Nilai Keputusan</span></a>
         <ul class="dropdown-menu">
           <li><a class="nav-link" href="../s_nilai/create.php">Nilai</a></li>
+          <li><a class="nav-link" href="../s_nilai/index.php">Nilai Mahasiswa</a></li>
+
         </ul>
       </li>
       <?php } ?>

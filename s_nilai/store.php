@@ -2,12 +2,12 @@
 session_start();
 require_once '../helper/connection.php';
 
-$nim = $_POST['nim'];
-$matkul = $_POST['matkul'];
-$semester = $_POST['semester'];
+// $nim = $_POST['nim'];
+// $matkul = $_POST['matkul'];
+// $semester = $_POST['semester'];
 $nilai = $_POST['nilai'];
 
-$query = mysqli_query($connection, "insert into nilai (nim, kode_matkul, semester, nilai) value('$nim', '$matkul', '$semester', '$nilai')");
+$query = mysqli_query($connection, "insert into nilai (nilai1, nilai2, nilai3, nilai4, nilai5) value('$nilai1', '$nilai2', '$nilai3','$nilai4','$nilai5')");
 
 if ($query) {
   $_SESSION['info'] = [

@@ -2,7 +2,7 @@
 require_once '../layout/_top.php';
 require_once '../helper/connection.php';
 
-$result = mysqli_query($connection, "SELECT * FROM matakuliah");
+$result = mysqli_query($connection, "SELECT * FROM mahasiswa");
 ?>
 
 <section class="section">
@@ -79,7 +79,7 @@ $result = mysqli_query($connection, "SELECT * FROM matakuliah");
                             <td><a type="button" class="btn btn-primary" data-bs-toggle="modal"
                                     data-bs-target="#modalEdit<?php echo $row['id']; ?>"><i
                                         class="bi bi-pencil-square"></i></a>
-                                <a class="btn btn-danger" href="hapus_matriks_id.php?id=<?php echo $row['id'] ?>"><i
+                                <a class="btn btn-danger" href="delete.php?id=<?php echo $row['id'] ?>"><i
                                         class="bi bi-trash-fill"></i></a>
                             </td>
                         </tr>
@@ -102,7 +102,7 @@ $result = mysqli_query($connection, "SELECT * FROM matakuliah");
                                                         FROM matrix
                                                         INNER JOIN mahasiswa ON matrix.nim = mahasiswa.nim
                                                         INNER JOIN kriteria ON matrix.id_kriteria = kriteria.id_kriteria
-                                                        WHERE alternatif.id = '$id'";
+                                                        WHERE mahasiswa.nim = '$id'";
 
                                                         $result1 = mysqli_query($connection, $sql1);
 

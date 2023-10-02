@@ -1,6 +1,6 @@
 <?php
 
-include('../helper/connection.php');
+require_once '../helper/connection.php';
 
 $id = $_GET['id'];
 

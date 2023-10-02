@@ -2,16 +2,14 @@
 session_start();
 require_once '../helper/connection.php';
 
-$nim = $_POST['nim'];
-$nama = $_POST['nama'];
-$kelas = $_POST['kelas'];
-$tempat_lahir = $_POST['tempat_lahir'];
-$tgl_lahir = $_POST['tgl_lahir'];
-$email = $_POST['email'];
-$no_hp = $_POST['no_hp'];
-$alamat = $_POST['alamat'];
+$id_nilai = $_POST['id_nilai'];
+$nilai1 = $_POST['nilai1'];
+$nilai2 = $_POST['nilai2'];
+$nilai1 = $_POST['nilai3'];
+$nilai2 = $_POST['nilai4'];
+$nilai1 = $_POST['nilai5'];
 
-$query = mysqli_query($connection, "UPDATE mahasiswa set nama='$nama', kelas='$kelas', tempat_lahir='$tempat_lahir', tgl_lahir='$tgl_lahir', email='$email', no_hp='$no_hp', alamat='$alamat' WHERE nim='$nim'");
+$query = mysqli_query($connection, "UPDATE nilai set niali1='$nilai1', nilai2='$nilai2', nilai3='$nilai3', nilai4='$nilai4', nilai5='$nilsi5' WHERE id_nilai='$id_nilai'");
 if ($query) {
   $_SESSION['info'] = [
     'status' => 'success',

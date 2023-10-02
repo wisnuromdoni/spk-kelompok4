@@ -3,6 +3,7 @@ require_once '../layout/_top.php';
 require_once '../helper/connection.php';
 
 $result = mysqli_query($connection, "SELECT * FROM mahasiswa");
+
 ?>
 
 <section class="section">

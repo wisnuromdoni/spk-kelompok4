@@ -2,10 +2,10 @@
 require_once '../layout/_top.php';
 require_once '../helper/connection.php';
 
-$id = $_GET['id'];
+$id_nilai = $_GET['id_nilai'];
 $nim = $_GET['nim'];
 
-$query = mysqli_query($connection, "SELECT * FROM nilai WHERE id='$id'");
+$query = mysqli_query($connection, "SELECT * FROM nilai WHERE id_nilai='$id_nilai'");
 $query = mysqli_query($connection, "SELECT * FROM mahasiswa WHERE nim='$nim'");
 
 ?>
@@ -24,19 +24,19 @@ $query = mysqli_query($connection, "SELECT * FROM mahasiswa WHERE nim='$nim'");
             <?php
             while ($row = mysqli_fetch_array($query)) {
             ?>
-              <input type="hidden" name="nim" value="<?= $row['nim'] ?>">
+              <!-- <input type="hidden" name="id_nilai" value="<?= $row['id_nilai'] ?>"> -->
               <table cellpadding="8" class="w-100">
-                <tr>
+              <tr>
                   <td>ID</td>
-                  <td><input class="form-control" n required value="<?= $row['id'] ?>" disabled></td>
+                  <td><input class="form-control" type="number" name="id_nilai" required value="<?= $row['id_nilai'] ?>"></td>
                 </tr>
                 <tr>
                   <td>Nilai 1</td>
-                  <td><input class="form-control" type="text" name="nilai1" required value="<?= $row['nilai1'] ?>"></td>
+                  <td><input class="form-control" type="number" name="nilai1" required value="<?= $row['nilai1'] ?>"></td>
                 </tr>
                 <tr>
                   <td>Nilai 2</td>
-                  <td><input class="form-control" type="text" name="nilai2" required value="<?= $row['nilai2'] ?>"></td>
+                  <td><input class="form-control" type="number" name="nilai2" required value="<?= $row['nilai2'] ?>"></td>
                 </tr>
                 <tr>
                   <td>

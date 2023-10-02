@@ -3,7 +3,7 @@ require_once '../layout/_top.php';
 require_once '../helper/connection.php';
 $result=[];
 // $result = mysqli_query($connection, "SELECT * FROM matrix");
-$result = mysqli_query($connection, "SELECT * FROM nilai, mahasiswa");
+$result = mysqli_query($connection, "SELECT * FROM nilai, mahasiswa where mahasiswa.nim = mahasiswa.nim");
 // $result = mysqli_query($connection, "SELECT * FROM mahasiswa");
 ?>
 
@@ -28,7 +28,7 @@ $result = mysqli_query($connection, "SELECT * FROM nilai, mahasiswa");
                   <th>Nilai 3</th>
                   <th>Nilai 4</th>
                   <th>Nilai 5</th>
-                  <th style="width: 150">Aksi</th>
+                  <!-- <th style="width: 150">Aksi</th> -->
                 </tr>
               </thead>
               <tbody>
@@ -47,14 +47,14 @@ $result = mysqli_query($connection, "SELECT * FROM nilai, mahasiswa");
                     <td><?= $data['nilai3'] ?></td>
                     <td><?= $data['nilai4'] ?></td>
                     <td><?= $data['nilai5'] ?></td>
-                    <td>
+                    <!-- <td>
                       <a class="btn btn-sm btn-danger mb-md-0 mb-1" href="delete.php?id=<?= $data['id'] ?>">
                         <i class="fas fa-trash fa-fw"></i>
                       </a>
                       <a class="btn btn-sm btn-info" href="edit.php?id=<?= $data['id'] ?>">
                         <i class="fas fa-edit fa-fw"></i>
                       </a>
-                    </td>
+                    </td> -->
                   </tr>
 
                 <?php

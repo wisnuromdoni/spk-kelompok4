@@ -1,9 +1,10 @@
 <?php
 require_once '../layout/_top.php';
 require_once '../helper/connection.php';
-
-$result = mysqli_query($connection, "SELECT * FROM matrix");
-$result = mysqli_query($connection, "SELECT * FROM mahasiswa");
+$result=[];
+// $result = mysqli_query($connection, "SELECT * FROM matrix");
+$result = mysqli_query($connection, "SELECT * FROM nilai, mahasiswa");
+// $result = mysqli_query($connection, "SELECT * FROM mahasiswa");
 ?>
 
 <section class="section">
@@ -22,7 +23,11 @@ $result = mysqli_query($connection, "SELECT * FROM mahasiswa");
                   <th>No</th>
                   <th>NIM</th>
                   <th>Nama</th>
-                  <th>Nilai Akhir</th>
+                  <th>Nilai 1</th>
+                  <th>Nilai 2</th>
+                  <th>Nilai 3</th>
+                  <th>Nilai 4</th>
+                  <th>Nilai 5</th>
                   <th style="width: 150">Aksi</th>
                 </tr>
               </thead>
@@ -37,7 +42,11 @@ $result = mysqli_query($connection, "SELECT * FROM mahasiswa");
                     <td><?= $no ?></td>
                     <td><?= $data['nim'] ?></td>
                     <td><?= $data['nama'] ?></td>
-                    <td><?= $data['nama'] ?></td>
+                    <td><?= $data['nilai1'] ?></td>
+                    <td><?= $data['nilai2'] ?></td>
+                    <td><?= $data['nilai3'] ?></td>
+                    <td><?= $data['nilai4'] ?></td>
+                    <td><?= $data['nilai5'] ?></td>
                     <td>
                       <a class="btn btn-sm btn-danger mb-md-0 mb-1" href="delete.php?id=<?= $data['id'] ?>">
                         <i class="fas fa-trash fa-fw"></i>

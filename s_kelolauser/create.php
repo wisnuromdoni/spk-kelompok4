@@ -71,6 +71,26 @@ if (isset($_POST['status'])) {
                     </select>
                   </td>
                 </tr>
+                <tr>
+                  <td>Tempat Lahir</td>
+                  <td><input class="form-control" type="text" name="tempat_lahir"></td>
+                </tr>
+                <tr>
+                  <td>Tanggal Lahir</td>
+                  <td><input class="form-control" type="date" name="tgl_lahir"></td>
+                </tr>
+                <tr>
+                  <td>Email</td>
+                  <td><input class="form-control" type="email" name="email"></td>
+                </tr>
+                <tr>
+                  <td>Nomor HP</td>
+                  <td><input class="form-control" type="text" name="no_hp"></td>
+                </tr>
+                <tr>
+                  <td>Alamat</td>
+                  <td><textarea class="form-control" name="alamat"></textarea></td>
+                </tr>
               <?php } ?>
               <tr>
                 <td>
@@ -90,10 +110,15 @@ if (isset($_POST['status'])) {
   // Dapatkan elemen select status
   const statusSelect = document.getElementById("status");
 
-  // Dapatkan elemen input NIM, Nama, dan Kelas
+  // Dapatkan elemen input NIM, Nama, Kelas, Tempat Lahir, Tanggal Lahir, Email, Nomor HP, dan Alamat
   const nimInput = document.querySelector("input[name='nim']");
   const namaInput = document.querySelector("input[name='nama']");
   const kelasSelect = document.querySelector("select[name='kelas']");
+  const tempatLahirInput = document.querySelector("input[name='tempat_lahir']");
+  const tglLahirInput = document.querySelector("input[name='tgl_lahir']");
+  const emailInput = document.querySelector("input[name='email']");
+  const noHpInput = document.querySelector("input[name='no_hp']");
+  const alamatInput = document.querySelector("textarea[name='alamat']");
 
   // Fungsi untuk menampilkan atau menyembunyikan field Mahasiswa berdasarkan status
   function toggleMahasiswaFields() {
@@ -101,10 +126,20 @@ if (isset($_POST['status'])) {
       nimInput.parentElement.parentElement.style.display = "table-row"; // Tampilkan input NIM
       namaInput.parentElement.parentElement.style.display = "table-row"; // Tampilkan input Nama
       kelasSelect.parentElement.parentElement.style.display = "table-row"; // Tampilkan select Kelas
+      tempatLahirInput.parentElement.parentElement.style.display = "table-row"; // Tampilkan input Tempat Lahir
+      tglLahirInput.parentElement.parentElement.style.display = "table-row"; // Tampilkan input Tanggal Lahir
+      emailInput.parentElement.parentElement.style.display = "table-row"; // Tampilkan input Email
+      noHpInput.parentElement.parentElement.style.display = "table-row"; // Tampilkan input Nomor HP
+      alamatInput.parentElement.parentElement.style.display = "table-row"; // Tampilkan input Alamat
     } else {
       nimInput.parentElement.parentElement.style.display = "none"; // Sembunyikan input NIM
       namaInput.parentElement.parentElement.style.display = "none"; // Sembunyikan input Nama
       kelasSelect.parentElement.parentElement.style.display = "none"; // Sembunyikan select Kelas
+      tempatLahirInput.parentElement.parentElement.style.display = "none"; // Sembunyikan input Tempat Lahir
+      tglLahirInput.parentElement.parentElement.style.display = "none"; // Sembunyikan input Tanggal Lahir
+      emailInput.parentElement.parentElement.style.display = "none"; // Sembunyikan input Email
+      noHpInput.parentElement.parentElement.style.display = "none"; // Sembunyikan input Nomor HP
+      alamatInput.parentElement.parentElement.style.display = "none"; // Sembunyikan input Alamat
     }
   }
 

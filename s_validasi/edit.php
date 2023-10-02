@@ -2,8 +2,12 @@
 require_once '../layout/_top.php';
 require_once '../helper/connection.php';
 
+$id = $_GET['id'];
 $nim = $_GET['nim'];
+
+$query = mysqli_query($connection, "SELECT * FROM nilai WHERE id='$id'");
 $query = mysqli_query($connection, "SELECT * FROM mahasiswa WHERE nim='$nim'");
+
 ?>
 
 <section class="section">
@@ -24,15 +28,15 @@ $query = mysqli_query($connection, "SELECT * FROM mahasiswa WHERE nim='$nim'");
               <table cellpadding="8" class="w-100">
                 <tr>
                   <td>ID</td>
-                  <td><input class="form-control" required value="<?= $row['nim'] ?>" disabled></td>
+                  <td><input class="form-control" n required value="<?= $row['id'] ?>" disabled></td>
                 </tr>
                 <tr>
-                  <td>Kriteria</td>
-                  <td><input class="form-control" type="text" name="nama" required value="<?= $row['nama'] ?>"></td>
+                  <td>Nilai 1</td>
+                  <td><input class="form-control" type="text" name="nilai1" required value="<?= $row['nilai1'] ?>"></td>
                 </tr>
                 <tr>
-                  <td>Nilai</td>
-                  <td><input class="form-control" type="text" name="tempat_lahir" required value="<?= $row['tempat_lahir'] ?>"></td>
+                  <td>Nilai 2</td>
+                  <td><input class="form-control" type="text" name="nilai2" required value="<?= $row['nilai2'] ?>"></td>
                 </tr>
                 <tr>
                   <td>

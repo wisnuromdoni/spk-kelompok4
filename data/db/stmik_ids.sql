@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 29, 2023 at 03:37 AM
+-- Generation Time: Oct 02, 2023 at 09:37 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -63,7 +63,7 @@ INSERT INTO `kriteria` (`id_kriteria`, `nama_kriteria`, `bobot`, `kategori`) VAL
 ('K2', 'TOEFL', 3, 'Benefit'),
 ('K3', 'Organisasi', 3, 'Cost'),
 ('K4', 'Prestasi', 4, 'Benefit'),
-('K5', 'Psikotes', 4, 'Cost');
+('K5', 'Psikotes', 3, 'Cost');
 
 -- --------------------------------------------------------
 
@@ -75,15 +75,17 @@ CREATE TABLE `login` (
   `id` int(11) NOT NULL,
   `username` varchar(20) NOT NULL,
   `password` varchar(20) NOT NULL,
-  `Status` varchar(20) NOT NULL
+  `status` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `login`
 --
 
-INSERT INTO `login` (`id`, `username`, `password`, `Status`) VALUES
-(1, 'admin', '123456', '');
+INSERT INTO `login` (`id`, `username`, `password`, `status`) VALUES
+(1, 'admin', '123456', 'Admin'),
+(2, 'mahasiswa', '12345', 'Mahasiswa'),
+(3, 'PJ Pilmapres', '123456', 'PJMapres');
 
 -- --------------------------------------------------------
 
@@ -107,12 +109,12 @@ CREATE TABLE `mahasiswa` (
 --
 
 INSERT INTO `mahasiswa` (`nim`, `nama`, `kelas`, `tempat_lahir`, `tgl_lahir`, `email`, `no_hp`, `alamat`) VALUES
+('10108009', 'Amelia Rosmaida', 'SI 3A', 'Sukabumi', '2002-12-18', 'ameliar@gmail.com', '08564738431', ''),
+('10108013', 'Cantika Tiara Maharani', 'SI 3A', 'Subang', '2003-02-12', 'cantika@gmail.com', '08763456475', 'Purwakarta'),
 ('10108031', 'Kevin Abhista', 'SI 3A', 'Subang', '2003-01-14', 'kevinabhista@gmail.com', '087654632845', ''),
-('10108041', 'Amelia Rosmaida', 'SI 3A', 'Sukabumi', '2002-12-18', 'ameliar@gmail.com', '08564738431', ''),
-('10108051', 'Dandi', 'SI 3B', 'Subang', '2003-02-12', 'dandi@gmail.com', '08763456475', ''),
+('10108041', 'Prita Nur Rifdah', 'SI 3A', 'Bekasi', '2023-07-11', 'prita@gmail.com', '0876463286', ''),
 ('10108057', 'Syifa Mutiara', 'SI 3A', 'Lampung', '2003-03-13', 'syifam@yahoo.com', '08563462854', ''),
-('10108061', 'Wisnu Romdoni', 'SI 3A', 'Subang', '2002-09-05', 'wisnuromdoni11@gmail.com', '082356748906', 'Subang'),
-('111111', 'Asep', 'SI 2A', 'Padang', '2003-09-21', 'asep@gmail.com', '089463645364', 'Medan');
+('10108061', 'Wisnu Romdoni', 'SI 3A', 'Subang', '2002-09-05', 'wisnuromdoni11@gmail.com', '082356748906', 'Subang');
 
 -- --------------------------------------------------------
 
@@ -136,10 +138,10 @@ INSERT INTO `matakuliah` (`kode_matkul`, `nama_matkul`, `sks`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `matriks`
+-- Table structure for table `matrix`
 --
 
-CREATE TABLE `matriks` (
+CREATE TABLE `matrix` (
   `id` int(11) NOT NULL,
   `nim` varchar(20) NOT NULL,
   `id_kriteria` varchar(11) NOT NULL,
@@ -153,19 +155,20 @@ CREATE TABLE `matriks` (
 --
 
 CREATE TABLE `nilai` (
-  `id` int(11) NOT NULL,
-  `nim` varchar(12) NOT NULL,
-  `kode_matkul` varchar(12) NOT NULL,
-  `semester` int(2) NOT NULL,
-  `nilai` int(3) NOT NULL
+  `id_nilai` int(10) NOT NULL,
+  `nilai1` int(10) NOT NULL,
+  `nilai2` int(10) NOT NULL,
+  `nilai3` int(10) NOT NULL,
+  `nilai4` int(10) NOT NULL,
+  `nilai5` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `nilai`
 --
 
-INSERT INTO `nilai` (`id`, `nim`, `kode_matkul`, `semester`, `nilai`) VALUES
-(5, '1911010001', '111', 3, 50);
+INSERT INTO `nilai` (`id_nilai`, `nilai1`, `nilai2`, `nilai3`, `nilai4`, `nilai5`) VALUES
+(1, 80, 78, 87, 82, 78);
 
 --
 -- Indexes for dumped tables
@@ -202,16 +205,16 @@ ALTER TABLE `matakuliah`
   ADD PRIMARY KEY (`kode_matkul`);
 
 --
--- Indexes for table `matriks`
+-- Indexes for table `matrix`
 --
-ALTER TABLE `matriks`
+ALTER TABLE `matrix`
   ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `nilai`
 --
 ALTER TABLE `nilai`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id_nilai`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -221,13 +224,7 @@ ALTER TABLE `nilai`
 -- AUTO_INCREMENT for table `login`
 --
 ALTER TABLE `login`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `nilai`
---
-ALTER TABLE `nilai`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

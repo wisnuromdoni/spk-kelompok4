@@ -329,10 +329,10 @@ $result = mysqli_query($connection, "SELECT * FROM mahasiswa");
                 // print_r($t_matriks_terbobot);
 
                 for ($j = 1; $j <= $_SESSION['num_rows']; $j++) {
-                    if ($jenis[$j - 1] == 'benefit') {
+                    if ($kategori[$j - 1] == 'benefit') {
                         array_push($a_w, min($t_matriks_terbobot[$j - 1]));
                         array_push($a_b, max($t_matriks_terbobot[$j - 1]));
-                    } else if ($jenis[$j - 1] == 'cost') {
+                    } else if ($kategori[$j - 1] == 'cost') {
                         array_push($a_w, max($t_matriks_terbobot[$j - 1]));
                         array_push($a_b, min($t_matriks_terbobot[$j - 1]));
                     }

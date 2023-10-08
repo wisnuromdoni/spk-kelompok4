@@ -100,7 +100,7 @@ $result = mysqli_query($connection, "SELECT * FROM mahasiswa");
                                                         $id = $row['id'];
                                                         $sql1 = "SELECT matrix.id AS matrix_id, mahasiswa.nim AS alternatif_id, mahasiswa.nama AS alternatif, kriteria.nama_kriteria AS kriteria, matrix.nilai
                                                         FROM matrix
-                                                        INNER JOIN mahasiswa ON matrix.id_alternatif = alternatif.id
+                                                        INNER JOIN mahasiswa ON matrix.id_alternatif = mahasiswa.nim
                                                         INNER JOIN kriteria ON matrix.id_kriteria = kriteria.id_kriteria
                                                         WHERE mahasiswa.nim = '$id'";
 

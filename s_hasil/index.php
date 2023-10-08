@@ -49,34 +49,4 @@ $result = mysqli_query($connection, "SELECT * FROM matrix");
 require_once '../layout/_bottom.php';
 ?>
 <!-- Page Specific JS File -->
-<?php
-if (isset($_SESSION['info'])) :
-  if ($_SESSION['info']['status'] == 'success') {
-?>
-    <script>
-      iziToast.success({
-        title: 'Sukses',
-        message: `<?= $_SESSION['info']['message'] ?>`,
-        position: 'topCenter',
-        timeout: 5000
-      });
-    </script>
-  <?php
-  } else {
-  ?>
-    <script>
-      iziToast.error({
-        title: 'Gagal',
-        message: `<?= $_SESSION['info']['message'] ?>`,
-        timeout: 5000,
-        position: 'topCenter'
-      });
-    </script>
-<?php
-  }
-
-  unset($_SESSION['info']);
-  $_SESSION['info'] = null;
-endif;
-?>
 <script src="../assets/js/assets/js/bootstrap.min.js"></script>

@@ -16,6 +16,6 @@ for ($i = 1; $i <= $_SESSION['num_rows']; $i++) {
 
     $sql = "UPDATE matrix SET nilai = $nilai WHERE id_kriteria = '$kriteria' AND nim = '$alternatif'";
     echo $sql;
-    mysqli_query($conn, $sql);
+    mysqli_query($connection, $sql);
     header('location:index.php');
 }

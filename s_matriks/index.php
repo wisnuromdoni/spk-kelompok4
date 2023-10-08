@@ -9,7 +9,7 @@ $result = mysqli_query($connection, "SELECT * FROM mahasiswa");
   <div class="section-header d-flex justify-content-between">
     <h1>Matriks</h1>
   </div>
-   <div class="card mb-3">
+  <div class="card mb-3">
             <h2 class="card-header py-5 text-center">TABEL NILAI KEPUTUSAN</h2>
             <div class="card-body">
                 <table class="table nowrap" style="width: 100%;">
@@ -19,9 +19,9 @@ $result = mysqli_query($connection, "SELECT * FROM mahasiswa");
                             <th scope="col">Nama</th>
                             <?php
 
-                                    $sql = "SELECT * FROM kriteria";
+                                    $sqli = "SELECT * FROM kriteria";
 
-                                    $result = mysqli_query($connection, $sql);
+                                    $result = mysqli_query($connection, $sqli);
 
                                     $bobot = array();
                                     $kategori = array();
@@ -52,7 +52,7 @@ $result = mysqli_query($connection, "SELECT * FROM mahasiswa");
                                     $sql_t = $sql_t . ", SUM(CASE WHEN (matrix.id_kriteria='K" . $i . "') THEN matrix.nilai END) AS K" . $i . "";
                                 }
 
-                                $sql_t = $sql_t . " FROM matrix INNER JOIN mahasiswa ON matrix.nim=mahasiswa.nim GROUP BY mahasiswa.nama";
+                                $sql_t = $sql_t . " FROM matrix INNER JOIN mahasiswa ON matrix.id_alternatif=mahasiswa.nim GROUP BY mahasiswa.nama";
 
                                 echo '<br/>';
 
@@ -79,7 +79,7 @@ $result = mysqli_query($connection, "SELECT * FROM mahasiswa");
                             <td><a type="button" class="btn btn-primary" data-bs-toggle="modal"
                                     data-bs-target="#modalEdit<?php echo $row['id']; ?>"><i
                                         class="bi bi-pencil-square"></i></a>
-                                <a class="btn btn-danger" href="delete.php?id=<?php echo $row['id'] ?>"><i
+                                <a class="btn btn-danger" href="hapus_matriks_id.php?id=<?php echo $row['id'] ?>"><i
                                         class="bi bi-trash-fill"></i></a>
                             </td>
                         </tr>
@@ -94,25 +94,25 @@ $result = mysqli_query($connection, "SELECT * FROM mahasiswa");
                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                             aria-label="Close"></button>
                                     </div>
-                                    <form method="post" action="edit.php">
+                                    <form method="post" action="edit_matriks.php">
                                         <div class="modal-body">
                                             <?php
                                                         $id = $row['id'];
-                                                        $sql1 = "SELECT matrix.id AS matrix_id, mahasiswa.nim AS mahasiswa_nim, mahasiswa.nama AS mahasiswa, kriteria.nama_kriteria AS kriteria, matrix.nilai
+                                                        $sql1 = "SELECT matrix.id AS matrix_id, alternatif.id AS alternatif_id, alternatif.nama AS alternatif, kriteria.nama AS kriteria, matrix.nilai
                                                         FROM matrix
-                                                        INNER JOIN mahasiswa ON matrix.nim = mahasiswa.nim
-                                                        INNER JOIN kriteria ON matrix.id_kriteria = kriteria.id_kriteria
-                                                        WHERE mahasiswa.nim = '$id'";
+                                                        INNER JOIN alternatif ON matrix.id_alternatif = alternatif.id
+                                                        INNER JOIN kriteria ON matrix.id_kriteria = kriteria.id
+                                                        WHERE alternatif.id = '$id'";
 
-                                                        $result1 = mysqli_query($connection, $sql1);
+                                                        $result1 = mysqli_query($conn, $sql1);
 
-                                                        $mahasiswa = '';
+                                                        $alternatif = '';
                                                         $i = 1;
                                                         while ($row1 = mysqli_fetch_array($result1)) {
                                                         ?>
 
-                                            <input type="hidden" name="mahasiswa"
-                                                value="<?php echo $row1['mahasiswa_nim']; ?>" />
+                                            <input type="hidden" name="alternatif"
+                                                value="<?php echo $row1['alternatif_id']; ?>" />
                                             <div class="mb-3">
                                                 <label class="form-label"><?php echo $row1['kriteria'] ?></label>
                                                 <input class="form-control" name="nilai<?php echo $i++; ?>"
@@ -138,30 +138,6 @@ $result = mysqli_query($connection, "SELECT * FROM mahasiswa");
                 </table>
             </div>
         </div>
-
-        <?php
-                $suma = array();
-                foreach ($matriks as $r) {
-                    $tmp_suma = array();
-                    foreach ($r as $s) {
-                        array_push($tmp_suma, pow($s, 2));
-                    }
-                    array_push($suma, $tmp_suma);
-                }
-                // print_r($suma);
-                echo '<br/>';
-
-                $sumb = array();
-                foreach ($suma as $row) {
-                    foreach ($row as $i => $val) {
-                        $sumb[$i] = isset($sumb[$i]) ? $sumb[$i] + $val : $val;
-                    }
-                }
-
-                // print_r($sumb);
-
-                ?>
-
         <div class="card mb-3">
             <h2 class="card-header py-5 text-center">MATRIKS TERNORMALISASI</h2>
             <div class="card-body">
@@ -172,13 +148,13 @@ $result = mysqli_query($connection, "SELECT * FROM mahasiswa");
                             <th scope="col">Nama</th>
                             <?php
 
-                                    $result = mysqli_query($connection, $sql);
+                                    $result = mysqli_query($connection, $sqli);
 
                                     while ($row = mysqli_fetch_array($result)) {
 
                                     ?>
 
-                            <th scope="col"><?php echo $row['id']; ?></th>
+                            <th scope="col"><?php echo $row['id_kriteria']; ?></th>
 
                             <?php
 
@@ -223,7 +199,6 @@ $result = mysqli_query($connection, "SELECT * FROM mahasiswa");
                 </table>
             </div>
         </div>
-
         <div class="card mb-3">
             <h2 class="card-header py-5 text-center">MATRIKS TERBOBOT</h2>
             <div class="card-body">
@@ -234,13 +209,13 @@ $result = mysqli_query($connection, "SELECT * FROM mahasiswa");
                             <th scope="col">Nama</th>
                             <?php
 
-                                    $result = mysqli_query($connection, $sql);
+                                    $result = mysqli_query($connection, $sqli);
 
                                     while ($row = mysqli_fetch_array($result)) {
 
                                     ?>
 
-                            <th scope="col"><?php echo $row['id']; ?></th>
+                            <th scope="col"><?php echo $row['id_kriteria']; ?></th>
 
                             <?php
 
@@ -329,10 +304,10 @@ $result = mysqli_query($connection, "SELECT * FROM mahasiswa");
                 // print_r($t_matriks_terbobot);
 
                 for ($j = 1; $j <= $_SESSION['num_rows']; $j++) {
-                    if ($kategori[$j - 1] == 'benefit') {
+                    if ($bobot[$j - 1] == 'benefit') {
                         array_push($a_w, min($t_matriks_terbobot[$j - 1]));
                         array_push($a_b, max($t_matriks_terbobot[$j - 1]));
-                    } else if ($kategori[$j - 1] == 'cost') {
+                    } else if ($bobot[$j - 1] == 'cost') {
                         array_push($a_w, max($t_matriks_terbobot[$j - 1]));
                         array_push($a_b, min($t_matriks_terbobot[$j - 1]));
                     }
@@ -464,7 +439,6 @@ $result = mysqli_query($connection, "SELECT * FROM mahasiswa");
                 </table>
             </div>
         </div>
-
 </section>
 
 <?php

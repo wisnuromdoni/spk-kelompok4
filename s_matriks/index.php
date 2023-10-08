@@ -48,7 +48,7 @@ $result = mysqli_query($connection, "SELECT * FROM mahasiswa");
                                 $sql_t = "SELECT
                                             mahasiswa.nim, mahasiswa.nama";
 
-                                for ($i = 1; $i <= $_SESSION['num_rows']; $i++) {
+                                for ($i = 1; $i <= $_SESSION[['status'] == "Admin"]; $i++) {
                                     $sql_t = $sql_t . ", SUM(CASE WHEN (matrix.id_kriteria='K" . $i . "') THEN matrix.nilai END) AS K" . $i . "";
                                 }
 
@@ -68,7 +68,7 @@ $result = mysqli_query($connection, "SELECT * FROM mahasiswa");
                             <th scope="row"><?php echo $no++ ?></th>
                             <td><?php echo $row['nama'] ?></td>
                             <?php
-                                        for ($i = 1; $i <= $_SESSION['num_rows']; $i++) {
+                                        for ($i = 1; $i <= $_SESSION[['status'] == "Admin"]; $i++) {
                                             array_push($tmp_matriks, $row['K' . $i]);
                                         ?>
                             <td><?php echo $row['K' . $i] ?></td>
@@ -94,17 +94,17 @@ $result = mysqli_query($connection, "SELECT * FROM mahasiswa");
                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                             aria-label="Close"></button>
                                     </div>
-                                    <form method="post" action="edit_matriks.php">
+                                    <form method="post" action="edit.php">
                                         <div class="modal-body">
                                             <?php
                                                         $id = $row['id'];
-                                                        $sql1 = "SELECT matrix.id AS matrix_id, alternatif.id AS alternatif_id, alternatif.nama AS alternatif, kriteria.nama AS kriteria, matrix.nilai
+                                                        $sql1 = "SELECT matrix.id AS matrix_id, mahasiswa.nim AS alternatif_id, mahasiswa.nama AS alternatif, kriteria.nama_kriteria AS kriteria, matrix.nilai
                                                         FROM matrix
-                                                        INNER JOIN alternatif ON matrix.id_alternatif = alternatif.id
-                                                        INNER JOIN kriteria ON matrix.id_kriteria = kriteria.id
-                                                        WHERE alternatif.id = '$id'";
+                                                        INNER JOIN mahasiswa ON matrix.id_alternatif = alternatif.id
+                                                        INNER JOIN kriteria ON matrix.id_kriteria = kriteria.id_kriteria
+                                                        WHERE mahasiswa.nim = '$id'";
 
-                                                        $result1 = mysqli_query($conn, $sql1);
+                                                        $result1 = mysqli_query($connection, $sql1);
 
                                                         $alternatif = '';
                                                         $i = 1;
@@ -168,7 +168,7 @@ $result = mysqli_query($connection, "SELECT * FROM mahasiswa");
 
                                 $result = mysqli_query($connection, $sql_t);
 
-                                for ($j = 1; $j <= $_SESSION['num_rows']; $j++) {
+                                for ($j = 1; $j <= $_SESSION[['status'] == "Admin"]; $j++) {
 
                                     $sum_k = 0;
                                     $data = array();
@@ -184,7 +184,7 @@ $result = mysqli_query($connection, "SELECT * FROM mahasiswa");
                             <th scope="row"><?php echo $i++ ?></th>
                             <td><?php echo $d['nama'] ?></td>
                             <?php
-                                            for ($j = 1; $j <= $_SESSION['num_rows']; $j++) {
+                                            for ($j = 1; $j <= $_SESSION[['status'] == "Admin"]; $j++) {
                                             ?>
                             <td><?php echo $d['K' . $j] / sqrt($sumb[$j - 1]) ?></td>
                             <?php
@@ -234,7 +234,7 @@ $result = mysqli_query($connection, "SELECT * FROM mahasiswa");
 
                                 $matriks_terbobot = array();
 
-                                for ($j = 1; $j <= $_SESSION['num_rows']; $j++) {
+                                for ($j = 1; $j <= $_SESSION[['status'] == "Admin"]; $j++) {
 
                                     $sum_k = 0;
                                     $data = array();
@@ -251,7 +251,7 @@ $result = mysqli_query($connection, "SELECT * FROM mahasiswa");
                             <td><?php echo $d['nama'] ?></td>
                             <?php
                                             $tmp_matriks_terbobot = array();
-                                            for ($j = 1; $j <= $_SESSION['num_rows']; $j++) {
+                                            for ($j = 1; $j <= $_SESSION[['status'] == "Admin"]; $j++) {
                                                 $row = ($d['K' . $j] / sqrt($sumb[$j - 1])) * $bobot[$j - 1];
                                                 array_push($tmp_matriks_terbobot, $row);
                                             ?>
@@ -303,7 +303,7 @@ $result = mysqli_query($connection, "SELECT * FROM mahasiswa");
 
                 // print_r($t_matriks_terbobot);
 
-                for ($j = 1; $j <= $_SESSION['num_rows']; $j++) {
+                for ($j = 1; $j <= $_SESSION[['status'] == "Admin"]; $j++) {
                     if ($bobot[$j - 1] == 'benefit') {
                         array_push($a_w, min($t_matriks_terbobot[$j - 1]));
                         array_push($a_b, max($t_matriks_terbobot[$j - 1]));
@@ -328,7 +328,7 @@ $result = mysqli_query($connection, "SELECT * FROM mahasiswa");
                     </thead>
                     <tbody>
                         <?php
-                                for ($i = 1; $i <= $_SESSION['num_rows']; $i++) {
+                                for ($i = 1; $i <= $_SESSION[['status'] == "Admin"]; $i++) {
                                 ?>
                         <tr>
                             <th scope="row"><?php echo "K$i"; ?></th>
@@ -354,7 +354,7 @@ $result = mysqli_query($connection, "SELECT * FROM mahasiswa");
                             $s_w = array();
                             $s_b = array();
 
-                            for ($j = 1; $j <= $_SESSION['num_rows']; $j++) {
+                            for ($j = 1; $j <= $_SESSION[['status'] == "Admin"]; $j++) {
 
                                 $sum_k = 0;
                                 $data = array();
@@ -368,7 +368,7 @@ $result = mysqli_query($connection, "SELECT * FROM mahasiswa");
 
                                     $sum_s_w = 0;
                                     $sum_s_b = 0;
-                                    for ($j = 1; $j <= $_SESSION['num_rows']; $j++) {
+                                    for ($j = 1; $j <= $_SESSION[['status'] == "Admin"]; $j++) {
                                         $matriks_terbobot = ($d['K' . $j] / sqrt($sumb[$j - 1])) * $bobot[$j - 1];
                                         $sum_s_w = $sum_s_w + pow(($matriks_terbobot - $a_w[$j - 1]), 2);
                                         $sum_s_b = $sum_s_b + pow(($matriks_terbobot - $a_b[$j - 1]), 2);

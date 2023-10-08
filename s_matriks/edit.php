@@ -3,11 +3,11 @@
 require_once '../layout/_top.php';
 require_once '../helper/connection.php';
 
-$alternatif = $_POST['alternatif'];
+$alternatif = $_POST['mahasiswa'];
 
 $sql = "UPDATE matrix SET nilai = nilai WHERE nim = nim AND id_kriteria = id_kriteria";
 
-for ($i = 1; $i <= $_SESSION['num_rows']; $i++) {
+for ($i = 1; $i <= $_SESSION[['status'] == "Admin"]; $i++) {
     $nilai = 'nilai';
     $kriteria = 'K';
 

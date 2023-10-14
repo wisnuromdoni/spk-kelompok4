@@ -5,6 +5,7 @@ require_once '../helper/connection.php';
 ?>
 
 <section class="section">
+
     <?php
     if (empty($_SESSION['status'])) {
     ?>

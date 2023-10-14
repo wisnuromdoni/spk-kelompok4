@@ -31,15 +31,15 @@ $result = mysqli_query($connection, "SELECT * FROM kriteria");
                 ?>
 
                   <tr>
-                    <td><?= $data['id_kriteria'] ?></td>
-                    <td><?= $data['nama_kriteria'] ?></td>
+                    <td><?= $data['id'] ?></td>
+                    <td><?= $data['nama'] ?></td>
                     <td><?= $data['bobot'] ?></td>
-                    <td><?= $data['kategori'] ?></td>
+                    <td><?= $data['jenis'] ?></td>
                     <td>
-                      <a class="btn btn-sm btn-danger mb-md-0 mb-1" href="delete.php?id_kriteria=<?= $data['id_kriteria'] ?>">
+                      <a class="btn btn-sm btn-danger mb-md-0 mb-1" href="delete.php?id=<?= $data['id'] ?>">
                         <i class="fas fa-trash fa-fw"></i>
                       </a>
-                      <a class="btn btn-sm btn-info" href="edit.php?id_kriteria=<?= $data['id_kriteria'] ?>">
+                      <a class="btn btn-sm btn-info" href="edit.php?id=<?= $data['id'] ?>">
                         <i class="fas fa-edit fa-fw"></i>
                       </a>
                     </td>

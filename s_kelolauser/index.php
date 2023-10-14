@@ -2,7 +2,7 @@
 require_once '../layout/_top.php';
 require_once '../helper/connection.php';
 
-$result = mysqli_query($connection, "SELECT * FROM login");
+$result = mysqli_query($connection, "SELECT id, username, status FROM login");
 ?>
 
 <section class="section">

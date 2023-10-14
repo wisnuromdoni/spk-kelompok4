@@ -29,7 +29,7 @@ if ($status === 'Mahasiswa') {
   $no_hp = $_POST['no_hp'];
   $alamat = $_POST['alamat'];
 
-  $query2 = mysqli_query($connection, "INSERT INTO mahasiswa (nim, nama, kelas, tempat_lahir, tgl_lahir, email, no_hp, alamat) VALUES ('$nim', '$nama', '$kelas', '$tempat_lahir', '$tgl_lahir', '$email', '$no_hp', '$alamat')");
+  $query2 = mysqli_query($connection, "INSERT INTO alternatif (nim, nama, kelas, tempat_lahir, tgl_lahir, email, no_hp, alamat) VALUES ('$nim', '$nama', '$kelas', '$tempat_lahir', '$tgl_lahir', '$email', '$no_hp', '$alamat')");
 
   if (!$query2) {
     $_SESSION['info'] = [

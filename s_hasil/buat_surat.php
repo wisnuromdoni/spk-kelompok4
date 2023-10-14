@@ -8,13 +8,13 @@ if (isset($_POST['download'])) {
     $nomor = $_POST['nomor'];
     $periode = $_POST['periode'];
 
-    $sql = "SELECT * FROM mahasiswa WHERE nama = '$nama'";
-    $result = mysqli_query($conn, $sql);
+    $sql = "SELECT * FROM alternatif WHERE nama = '$nama'";
+    $result = mysqli_query($connection, $sql);
 
     $surat = file_get_contents('surat_keputusan.rtf');
 
     while ($row = mysqli_fetch_array($result)) {
-        $surat = str_replace('#NIM', $row['nip'], $surat);
+        $surat = str_replace('#NIP', $row['nip'], $surat);
         $surat = str_replace('#JABATAN1', $row['jabatan_1'], $surat);
         $surat = str_replace('#JABATAN2', $row['jabatan_2'], $surat);
     }
@@ -25,7 +25,7 @@ if (isset($_POST['download'])) {
     $surat = str_replace('#PERIODE', $periode, $surat);
 
     header('Content-type: application/msword');
-    header('Content-disposition: inline; filename=surat_spk.docx');
+    header('Content-disposition: inline; filename=surat_spk.doc');
     header('Content-length: ' . strlen($surat));
     echo $surat;
 } else {

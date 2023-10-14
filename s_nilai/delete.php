@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once '../helper/connection.php';
+include('../helper/connection.php');
 
 $id = $_GET['id'];
 

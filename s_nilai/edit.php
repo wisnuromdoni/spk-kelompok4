@@ -1,6 +1,6 @@
 <?php
 require_once '../layout/_top.php';
-require_once '../helper/connection.php';
+include('../helper/connection.php');
 
 $id = $_GET['id'];
 $query = mysqli_query($connection, "SELECT * FROM nilai WHERE id='$id'");

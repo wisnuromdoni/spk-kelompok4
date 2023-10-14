@@ -8,7 +8,6 @@ $result = mysqli_query($connection, "SELECT * FROM matrix");
 <section class="section">
   <div class="section-header d-flex justify-content-between">
     <h1>Hasil Keputusan Berdasarkan TOPSIS</h1>
-    <a href="./create.php" class="btn btn-primary">Tambah Data</a>
   </div>
   <div class="card">
                     <?php

@@ -2,8 +2,8 @@
 require_once '../layout/_top.php';
 require_once '../helper/connection.php';
 
-$id_kriteria = $_GET['id_kriteria']; 
-$query = mysqli_query($connection, "SELECT * FROM kriteria WHERE id_kriteria='$id_kriteria'");
+$id = $_GET['id']; 
+$query = mysqli_query($connection, "SELECT * FROM kriteria WHERE id='$id'");
 ?>
 
 <section class="section">
@@ -20,15 +20,15 @@ $query = mysqli_query($connection, "SELECT * FROM kriteria WHERE id_kriteria='$i
             <?php
             while ($row = mysqli_fetch_array($query)) {
             ?>
-              <input type="hidden" name="id_kriteria" value="<?= $row['id_kriteria'] ?>">
+              <input type="hidden" name="id" value="<?= $row['id'] ?>">
               <table cellpadding="8" class="w-100">
                 <tr>
                   <td>ID Kriteria</td>
-                  <td><input class="form-control" required value="<?= $row['id_kriteria'] ?>" disabled></td>
+                  <td><input class="form-control" required value="<?= $row['id'] ?>" disabled></td>
                 </tr>
                 <tr>
                   <td>Kriteria</td>
-                  <td><input class="form-control"  type="text" name="nama_kriteria" required value="<?= $row['nama_kriteria'] ?>"></td>
+                  <td><input class="form-control"  type="text" name="nama" required value="<?= $row['nama'] ?>"></td>
                 </tr>
                 <tr>
                   <td>Bobot</td>
@@ -37,11 +37,11 @@ $query = mysqli_query($connection, "SELECT * FROM kriteria WHERE id_kriteria='$i
                 <tr>
                   <td>Kategori</td>
                   <td>
-                    <select class="form-control" name="kategori" id="kategori" required>
-                      <option value="Benefit" <?php if ($row['kategori'] == "Benefit") {
+                    <select class="form-control" name="jenis" id="jenis" required>
+                      <option value="Benefit" <?php if ($row['jenis'] == "Benefit") {
                                               echo "selected";
                                             } ?>>Benefit</option>
-                      <option value="Cost" <?php if ($row['kategori'] == "Cost") {
+                      <option value="Cost" <?php if ($row['jenis'] == "Cost") {
                                                 echo "selected";
                                               } ?>>Cost</option>
                     </select>

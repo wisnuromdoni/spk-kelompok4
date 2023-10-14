@@ -2,14 +2,22 @@
 require_once '../layout/_top.php';
 require_once '../helper/connection.php';
 
-$result = mysqli_query($connection, "SELECT * FROM mahasiswa");
+$result = mysqli_query($connection, "SELECT * FROM alternatif");
 ?>
 
 <section class="section">
-  <div class="section-header d-flex justify-content-between">
-    <h1>Matriks</h1>
-  </div>
-  <div class="card mb-3">
+<main class="container py-5">
+        <?php
+            include('../helper/connection.php');
+
+            $result = mysqli_query($connection, "SELECT * FROM matrix");
+            if (mysqli_num_rows($result) < 1) {
+            ?>
+        <span>Data belum ada, belum ada mahasiswa menginput data. <a href="../dashboard/index.php">Kembali</a></span>
+        <?php
+            } else {
+            ?>
+        <div class="card mb-3">
             <h2 class="card-header py-5 text-center">TABEL NILAI KEPUTUSAN</h2>
             <div class="card-body">
                 <table class="table nowrap" style="width: 100%;">
@@ -19,20 +27,20 @@ $result = mysqli_query($connection, "SELECT * FROM mahasiswa");
                             <th scope="col">Nama</th>
                             <?php
 
-                                    $sqli = "SELECT * FROM kriteria";
+                                    $sql = "SELECT * FROM kriteria";
 
-                                    $result = mysqli_query($connection, $sqli);
+                                    $result = mysqli_query($connection, $sql);
 
                                     $bobot = array();
-                                    $kategori = array();
+                                    $jenis = array();
 
                                     while ($row = mysqli_fetch_array($result)) {
                                         array_push($bobot, $row['bobot']);
-                                        array_push($kategori, $row['kategori']);
+                                        array_push($jenis, $row['jenis']);
 
                                     ?>
 
-                            <th scope="col"><?php echo $row['id_kriteria']; ?></th>
+                            <th scope="col"><?php echo $row['id']; ?></th>
 
                             <?php
 
@@ -46,13 +54,13 @@ $result = mysqli_query($connection, "SELECT * FROM mahasiswa");
                         <?php
 
                                 $sql_t = "SELECT
-                                            mahasiswa.nim, mahasiswa.nama";
+                                            alternatif.id, alternatif.nama";
 
-                                for ($i = 1; $i <= $_SESSION[['status'] == "Admin"]; $i++) {
+                                for ($i = 1; $i <= $_SESSION['num_rows']; $i++) {
                                     $sql_t = $sql_t . ", SUM(CASE WHEN (matrix.id_kriteria='K" . $i . "') THEN matrix.nilai END) AS K" . $i . "";
                                 }
 
-                                $sql_t = $sql_t . " FROM matrix INNER JOIN mahasiswa ON matrix.id_alternatif=mahasiswa.nim GROUP BY mahasiswa.nama";
+                                $sql_t = $sql_t . " FROM matrix INNER JOIN alternatif ON matrix.id_alternatif=alternatif.id GROUP BY alternatif.nama";
 
                                 echo '<br/>';
 
@@ -68,7 +76,7 @@ $result = mysqli_query($connection, "SELECT * FROM mahasiswa");
                             <th scope="row"><?php echo $no++ ?></th>
                             <td><?php echo $row['nama'] ?></td>
                             <?php
-                                        for ($i = 1; $i <= $_SESSION[['status'] == "Admin"]; $i++) {
+                                        for ($i = 1; $i <= $_SESSION['num_rows']; $i++) {
                                             array_push($tmp_matriks, $row['K' . $i]);
                                         ?>
                             <td><?php echo $row['K' . $i] ?></td>
@@ -78,9 +86,9 @@ $result = mysqli_query($connection, "SELECT * FROM mahasiswa");
                                         ?>
                             <td><a type="button" class="btn btn-primary" data-bs-toggle="modal"
                                     data-bs-target="#modalEdit<?php echo $row['id']; ?>"><i
-                                        class="bi bi-pencil-square"></i></a>
-                                <a class="btn btn-danger" href="hapus_matriks_id.php?id=<?php echo $row['id'] ?>"><i
-                                        class="bi bi-trash-fill"></i></a>
+                                        class="bi bi-pencil-square"></i>Edit</a>
+                                <a class="btn btn-danger" href="delete.php?id=<?php echo $row['id'] ?>"><i
+                                        class="bi bi-trash-fill"></i>Hapus</a>
                             </td>
                         </tr>
 
@@ -98,11 +106,11 @@ $result = mysqli_query($connection, "SELECT * FROM mahasiswa");
                                         <div class="modal-body">
                                             <?php
                                                         $id = $row['id'];
-                                                        $sql1 = "SELECT matrix.id AS matrix_id, mahasiswa.nim AS alternatif_id, mahasiswa.nama AS alternatif, kriteria.nama_kriteria AS kriteria, matrix.nilai
+                                                        $sql1 = "SELECT matrix.id AS matrix_id, alternatif.id AS alternatif_id, alternatif.nama AS alternatif, kriteria.nama AS kriteria, matrix.nilai
                                                         FROM matrix
-                                                        INNER JOIN mahasiswa ON matrix.id_alternatif = mahasiswa.nim
-                                                        INNER JOIN kriteria ON matrix.id_kriteria = kriteria.id_kriteria
-                                                        WHERE mahasiswa.nim = '$id'";
+                                                        INNER JOIN alternatif ON matrix.id_alternatif = alternatif.id
+                                                        INNER JOIN kriteria ON matrix.id_kriteria = kriteria.id
+                                                        WHERE alternatif.id = '$id'";
 
                                                         $result1 = mysqli_query($connection, $sql1);
 
@@ -138,6 +146,30 @@ $result = mysqli_query($connection, "SELECT * FROM mahasiswa");
                 </table>
             </div>
         </div>
+
+        <?php
+                $suma = array();
+                foreach ($matriks as $r) {
+                    $tmp_suma = array();
+                    foreach ($r as $s) {
+                        array_push($tmp_suma, pow($s, 2));
+                    }
+                    array_push($suma, $tmp_suma);
+                }
+                // print_r($suma);
+                echo '<br/>';
+
+                $sumb = array();
+                foreach ($suma as $row) {
+                    foreach ($row as $i => $val) {
+                        $sumb[$i] = isset($sumb[$i]) ? $sumb[$i] + $val : $val;
+                    }
+                }
+
+                // print_r($sumb);
+
+                ?>
+
         <div class="card mb-3">
             <h2 class="card-header py-5 text-center">MATRIKS TERNORMALISASI</h2>
             <div class="card-body">
@@ -148,13 +180,13 @@ $result = mysqli_query($connection, "SELECT * FROM mahasiswa");
                             <th scope="col">Nama</th>
                             <?php
 
-                                    $result = mysqli_query($connection, $sqli);
+                                    $result = mysqli_query($connection, $sql);
 
                                     while ($row = mysqli_fetch_array($result)) {
 
                                     ?>
 
-                            <th scope="col"><?php echo $row['id_kriteria']; ?></th>
+                            <th scope="col"><?php echo $row['id']; ?></th>
 
                             <?php
 
@@ -168,7 +200,7 @@ $result = mysqli_query($connection, "SELECT * FROM mahasiswa");
 
                                 $result = mysqli_query($connection, $sql_t);
 
-                                for ($j = 1; $j <= $_SESSION[['status'] == "Admin"]; $j++) {
+                                for ($j = 1; $j <= $_SESSION['num_rows']; $j++) {
 
                                     $sum_k = 0;
                                     $data = array();
@@ -184,7 +216,7 @@ $result = mysqli_query($connection, "SELECT * FROM mahasiswa");
                             <th scope="row"><?php echo $i++ ?></th>
                             <td><?php echo $d['nama'] ?></td>
                             <?php
-                                            for ($j = 1; $j <= $_SESSION[['status'] == "Admin"]; $j++) {
+                                            for ($j = 1; $j <= $_SESSION['num_rows']; $j++) {
                                             ?>
                             <td><?php echo $d['K' . $j] / sqrt($sumb[$j - 1]) ?></td>
                             <?php
@@ -199,6 +231,7 @@ $result = mysqli_query($connection, "SELECT * FROM mahasiswa");
                 </table>
             </div>
         </div>
+
         <div class="card mb-3">
             <h2 class="card-header py-5 text-center">MATRIKS TERBOBOT</h2>
             <div class="card-body">
@@ -209,13 +242,13 @@ $result = mysqli_query($connection, "SELECT * FROM mahasiswa");
                             <th scope="col">Nama</th>
                             <?php
 
-                                    $result = mysqli_query($connection, $sqli);
+                                    $result = mysqli_query($connection, $sql);
 
                                     while ($row = mysqli_fetch_array($result)) {
 
                                     ?>
 
-                            <th scope="col"><?php echo $row['id_kriteria']; ?></th>
+                            <th scope="col"><?php echo $row['id']; ?></th>
 
                             <?php
 
@@ -234,7 +267,7 @@ $result = mysqli_query($connection, "SELECT * FROM mahasiswa");
 
                                 $matriks_terbobot = array();
 
-                                for ($j = 1; $j <= $_SESSION[['status'] == "Admin"]; $j++) {
+                                for ($j = 1; $j <= $_SESSION['num_rows']; $j++) {
 
                                     $sum_k = 0;
                                     $data = array();
@@ -251,7 +284,7 @@ $result = mysqli_query($connection, "SELECT * FROM mahasiswa");
                             <td><?php echo $d['nama'] ?></td>
                             <?php
                                             $tmp_matriks_terbobot = array();
-                                            for ($j = 1; $j <= $_SESSION[['status'] == "Admin"]; $j++) {
+                                            for ($j = 1; $j <= $_SESSION['num_rows']; $j++) {
                                                 $row = ($d['K' . $j] / sqrt($sumb[$j - 1])) * $bobot[$j - 1];
                                                 array_push($tmp_matriks_terbobot, $row);
                                             ?>
@@ -303,11 +336,11 @@ $result = mysqli_query($connection, "SELECT * FROM mahasiswa");
 
                 // print_r($t_matriks_terbobot);
 
-                for ($j = 1; $j <= $_SESSION[['status'] == "Admin"]; $j++) {
-                    if ($bobot[$j - 1] == 'benefit') {
+                for ($j = 1; $j <= $_SESSION['num_rows']; $j++) {
+                    if ($jenis[$j - 1] == 'benefit') {
                         array_push($a_w, min($t_matriks_terbobot[$j - 1]));
                         array_push($a_b, max($t_matriks_terbobot[$j - 1]));
-                    } else if ($bobot[$j - 1] == 'cost') {
+                    } else if ($jenis[$j - 1] == 'cost') {
                         array_push($a_w, max($t_matriks_terbobot[$j - 1]));
                         array_push($a_b, min($t_matriks_terbobot[$j - 1]));
                     }
@@ -328,7 +361,7 @@ $result = mysqli_query($connection, "SELECT * FROM mahasiswa");
                     </thead>
                     <tbody>
                         <?php
-                                for ($i = 1; $i <= $_SESSION[['status'] == "Admin"]; $i++) {
+                                for ($i = 1; $i <= $_SESSION['num_rows']; $i++) {
                                 ?>
                         <tr>
                             <th scope="row"><?php echo "K$i"; ?></th>
@@ -354,7 +387,7 @@ $result = mysqli_query($connection, "SELECT * FROM mahasiswa");
                             $s_w = array();
                             $s_b = array();
 
-                            for ($j = 1; $j <= $_SESSION[['status'] == "Admin"]; $j++) {
+                            for ($j = 1; $j <= $_SESSION['num_rows']; $j++) {
 
                                 $sum_k = 0;
                                 $data = array();
@@ -368,7 +401,7 @@ $result = mysqli_query($connection, "SELECT * FROM mahasiswa");
 
                                     $sum_s_w = 0;
                                     $sum_s_b = 0;
-                                    for ($j = 1; $j <= $_SESSION[['status'] == "Admin"]; $j++) {
+                                    for ($j = 1; $j <= $_SESSION['num_rows']; $j++) {
                                         $matriks_terbobot = ($d['K' . $j] / sqrt($sumb[$j - 1])) * $bobot[$j - 1];
                                         $sum_s_w = $sum_s_w + pow(($matriks_terbobot - $a_w[$j - 1]), 2);
                                         $sum_s_b = $sum_s_b + pow(($matriks_terbobot - $a_b[$j - 1]), 2);
@@ -439,40 +472,29 @@ $result = mysqli_query($connection, "SELECT * FROM mahasiswa");
                 </table>
             </div>
         </div>
-</section>
 
+        <a class="btn btn-danger" href="hapus_matriks.php"
+            onclick="return confirm('Apakah Anda yakin ingin menghapus seluruh data ini?')"><i
+                class="bi bi-trash-fill"></i> Hapus Seluruh Data</a>
+                <?php
+            }
+
+            ?>
+    </main>        
+</section>
+    
 <?php
 require_once '../layout/_bottom.php';
 ?>
-<!-- Page Specific JS File -->
-<?php
-if (isset($_SESSION['info'])) :
-  if ($_SESSION['info']['status'] == 'success') {
-?>
-    <script>
-      iziToast.success({
-        title: 'Sukses',
-        message: `<?= $_SESSION['info']['message'] ?>`,
-        position: 'topCenter',
-        timeout: 5000
-      });
-    </script>
-  <?php
-  } else {
-  ?>
-    <script>
-      iziToast.error({
-        title: 'Gagal',
-        message: `<?= $_SESSION['info']['message'] ?>`,
-        timeout: 5000,
-        position: 'topCenter'
-      });
-    </script>
-<?php
-  }
 
-  unset($_SESSION['info']);
-  $_SESSION['info'] = null;
-endif;
-?>
-<script src="../assets/js/page/modules-datatables.js"></script>
+  <script src="../assets/js/page/modules-datatables.js"></script>
+  <script>
+  $('document').ready(function() {
+      $('.table').DataTable({
+          responsive: true,
+          columnDefs: [{
+              responsivePriority: 1,
+              targets: 0
+          }, ]
+      })
+  })

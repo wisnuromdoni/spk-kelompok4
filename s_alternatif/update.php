@@ -11,7 +11,7 @@ $email = $_POST['email'];
 $no_hp = $_POST['no_hp'];
 $alamat = $_POST['alamat'];
 
-$query = mysqli_query($connection, "UPDATE mahasiswa set nama='$nama', kelas='$kelas', tempat_lahir='$tempat_lahir', tgl_lahir='$tgl_lahir', email='$email', no_hp='$no_hp', alamat='$alamat' WHERE nim='$nim'");
+$query = mysqli_query($connection, "UPDATE alternatif set nama='$nama', kelas='$kelas', tempat_lahir='$tempat_lahir', tgl_lahir='$tgl_lahir', email='$email', no_hp='$no_hp', alamat='$alamat' WHERE nim='$nim'");
 if ($query) {
   $_SESSION['info'] = [
     'status' => 'success',

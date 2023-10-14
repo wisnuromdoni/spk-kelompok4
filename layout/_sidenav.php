@@ -1,7 +1,7 @@
 <div class="main-sidebar sidebar-style-2">
   <aside id="sidebar-wrapper">
   <div class="sidebar-brand">
-      <a href="index.php">
+      <a href="../dashboard/index.php">
         <img src="https://polsub.ac.id/wp-content/uploads/2021/12/logoPOLSUB-HD.png" alt="logo" width="50" height="50">
       </a>
     </div>
@@ -68,7 +68,7 @@
         <li class="dropdown">
           <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fa fa-plus-circle"></i> <span>Nilai Keputusan</span></a>
           <ul class="dropdown-menu">
-            <li><a class="nav-link" href="../s_nilai/create.php">Nilai</a></li>
+            <li><a class="nav-link" href="../s_nilai/nilai_keputusan.php">Nilai</a></li>
             <li><a class="nav-link" href="../s_nilai/index.php">Nilai Mahasiswa</a></li>
           </ul>
         </li>

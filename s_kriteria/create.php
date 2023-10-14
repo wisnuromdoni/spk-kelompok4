@@ -19,11 +19,11 @@ $kriteria = mysqli_query($connection, "SELECT * FROM kriteria");
             <table cellpadding="8" class="w-100">
             <tr>
                 <td>ID Kriteria</td>
-                <td><input class="form-control" type="text" name="id_kriteria"></td>
+                <td><input class="form-control" type="text" name="id"></td>
               </tr>
               <tr>
                 <td>Kriteria</td>
-                <td><input class="form-control" type="text" name="nama_kriteria"></td>
+                <td><input class="form-control" type="text" name="nama"></td>
               </tr>
               <tr>
                 <td>Bobot</td>
@@ -32,7 +32,7 @@ $kriteria = mysqli_query($connection, "SELECT * FROM kriteria");
               <tr>
                 <td>Kategori</td>
                 <td>
-                  <select class="form-control" name="kategori" id="kategori" required>
+                  <select class="form-control" name="jenis" id="jenis" required>
                     <option value="">--Pilih Kategori--</option>
                     <option value="Benefit">Benefit</option>
                     <option value="Cost">Cost</option>

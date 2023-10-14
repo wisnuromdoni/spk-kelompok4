@@ -3,7 +3,7 @@ require_once '../layout/_top.php';
 require_once '../helper/connection.php';
 
 $nim = $_GET['nim'];
-$query = mysqli_query($connection, "SELECT * FROM mahasiswa WHERE nim='$nim'");
+$query = mysqli_query($connection, "SELECT * FROM alternatif WHERE nim='$nim'");
 ?>
 
 <section class="section">

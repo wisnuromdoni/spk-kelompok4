@@ -11,7 +11,7 @@ $email = $_POST['email'];
 $no_hp = $_POST['no_hp'];
 $alamat = $_POST['alamat'];
 
-$query = mysqli_query($connection, "insert into mahasiswa (nim, nama, kelas, tempat_lahir, tgl_lahir, email, no_hp, alamat) value('$nim', '$nama', '$kelas', '$tempat_lahir', '$tgl_lahir', '$email', '$no_hp', '$alamat')");
+$query = mysqli_query($connection, "insert into alternatif (nim, nama, kelas, tempat_lahir, tgl_lahir, email, no_hp, alamat) value('$nim', '$nama', '$kelas', '$tempat_lahir', '$tgl_lahir', '$email', '$no_hp', '$alamat')");
 if ($query) {
   $_SESSION['info'] = [
     'status' => 'success',

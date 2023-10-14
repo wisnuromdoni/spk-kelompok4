@@ -2,7 +2,7 @@
 require_once '../layout/_top.php';
 require_once '../helper/connection.php';
 
-$nama = mysqli_query($connection, "SELECT COUNT(*) FROM mahasiswa");
+$nama = mysqli_query($connection, "SELECT COUNT(*) FROM alternatif");
 $username = mysqli_query($connection, "SELECT COUNT(*) FROM login");
 $nama_kriteria = mysqli_query($connection, "SELECT COUNT(*) FROM kriteria");
 

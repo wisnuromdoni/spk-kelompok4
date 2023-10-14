@@ -1,17 +1,20 @@
 <?php
-require_once 'helper/connection.php';
+include('helper/connection.php');
 session_start();
 if (isset($_POST['submit'])) {
   $username = $_POST['username'];
   $password = $_POST['password'];
 
-  $sql = "SELECT * FROM login WHERE username='$username' and password='$password' LIMIT 1";
+  $sql = "SELECT * FROM login WHERE username='$username' and password='$password' ";
   $result = mysqli_query($connection, $sql);
+  $sql_krit = "SELECT * FROM kriteria"; 
+  $result_krit = mysqli_query($connection, $sql_krit);
 
   $row = mysqli_fetch_assoc($result);
   if ($row) {
     $_SESSION['login'] = $row;
     $_SESSION['status'] = $row['status'];
+    $_SESSION['num_rows'] = mysqli_num_rows($result_krit);
     header('Location: index.php');
   }
 }

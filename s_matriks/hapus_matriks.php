@@ -1,6 +1,6 @@
 <?php
 
-require_once '../helper/connection.php';
+include('../helper/connection.php');
 
 $sql = "DELETE FROM matrix";
 

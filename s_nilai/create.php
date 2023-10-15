@@ -67,7 +67,7 @@ $matrix = mysqli_query($connection, "SELECT id_alternatif FROM matrix");
                             <td><?php echo $row['nama'] ?></td>
                             <td><?php echo $row['bobot'] ?></td>
                             <td><?php echo $row['jenis'] ?></td>
-                            <td><input class="form-control" type="number" name="nilai_K<?php echo $row['id'] ?>" /></td>
+                            <td><input class="form-control" type="number" name="nilai_<?php echo $row['id'] ?>" /></td>
                         </tr>
 
                         <?php

@@ -3,8 +3,8 @@ include('../helper/connection.php');
 
 $id = $_GET['id'];
 
-$sql = "DELETE FROM matrix WHERE id='$id'";
+$sql = "DELETE FROM matrix WHERE id_alternatif='$id'";
 
-mysqli_query($connectiion, $sql);
+mysqli_query($connection, $sql);
 
 header('location:index.php');

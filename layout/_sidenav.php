@@ -48,7 +48,7 @@
         <li class="dropdown">
           <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fa fa-plus-circle"></i> <span>Hasil</span></a>
           <ul class="dropdown-menu">
-            <li><a class="nav-link" href="../s_hasik/index.php">Hasil Keputusan</a></li>
+            <li><a class="nav-link" href="../s_hasil/index.php">Hasil Keputusan</a></li>
           </ul>
         </li>
       <?php endif; ?>
@@ -75,7 +75,7 @@
         <li class="dropdown">
           <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fa fa-plus-circle"></i> <span>Hasil</span></a>
           <ul class="dropdown-menu">
-            <li><a class="nav-link" href="../s_hasik/index.php">Hasil Keputusan</a></li>
+            <li><a class="nav-link" href="../s_hasil/index.php">Hasil Keputusan</a></li>
           </ul>
         </li>
       <?php endif; ?>
